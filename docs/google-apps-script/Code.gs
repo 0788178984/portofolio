@@ -1,54 +1,91 @@
 /**
- * Auto-list files from a Google Drive folder for your portfolio (no paid API).
+ * Auto-list files from Google Drive — flat list OR grouped by subfolders.
  *
- * Setup:
- * 1. In Drive, create a folder for client docs. Open it and copy the ID from the URL:
- *    https://drive.google.com/drive/folders/THIS_IS_THE_FOLDER_ID
- *    IMPORTANT: Share that folder (Share → General access) as "Anyone with the link" = Viewer.
- *    Otherwise clients see 403 or "Request access" and must sign in.
- * 2. Go to https://script.google.com → New project → paste this file → set FOLDER_ID below.
- * 3. Deploy → New deployment → Type: Web app
- *    - Execute as: Me
- *    - Who has access: Anyone (or Anyone with Google account if you prefer)
- * 4. Copy the Web app URL (ends with /exec).
- * 5. In your site, set "driveFeedUrl" in docs/documents.json to that URL.
+ * Structure in Drive:
+ *   Client docs (FOLDER_ID)
+ *     ├── Papers/          → section "Papers"
+ *     ├── Study material/  → section "Study material"
+ *     └── file.pdf         → if you ALSO have subfolders, root files go under "General"
  *
- * Upload files into the folder; refresh the site to see them (adds a cache-bust query automatically).
+ * If there are NO subfolders, response is { files: [...] } (same as before).
+ * If there ARE subfolders, response is { folders: [ { name, files: [...] } ] }.
  *
- * CORS: If the browser blocks fetch() to script.google.com, proxy the URL through your host
- * (e.g. Netlify redirect from /api/drive-list to the script URL) and set driveFeedUrl to that path.
+ * Share the root folder as "Anyone with the link" = Viewer.
  */
 
 var FOLDER_ID = 'PASTE_YOUR_FOLDER_ID_HERE';
 
+function fileToJson_(f) {
+  var id = f.getId();
+  var size = 0;
+  try {
+    size = f.getSize();
+  } catch (e) {
+    size = 0;
+  }
+  return {
+    name: f.getName(),
+    id: id,
+    url: 'https://drive.google.com/uc?export=download&id=' + id,
+    viewUrl: 'https://drive.google.com/file/d/' + id + '/view',
+    type: f.getMimeType(),
+    size: size,
+    date: f.getLastUpdated().toISOString()
+  };
+}
+
+function collectFilesInFolder_(folder) {
+  var rows = [];
+  var it = folder.getFiles();
+  while (it.hasNext()) {
+    var f = it.next();
+    if (f.isTrashed()) continue;
+    rows.push({ file: f, updated: f.getLastUpdated() });
+  }
+  rows.sort(function (a, b) {
+    return b.updated - a.updated;
+  });
+  return rows.map(function (r) {
+    return fileToJson_(r.file);
+  });
+}
+
 function doGet() {
   if (!FOLDER_ID || FOLDER_ID === 'PASTE_YOUR_FOLDER_ID_HERE') {
-    return jsonOut({ documents: [], error: 'Set FOLDER_ID in the script project.' });
+    return jsonOut({ files: [], error: 'Set FOLDER_ID in the script project.' });
   }
   try {
-    var folder = DriveApp.getFolderById(FOLDER_ID);
-    var it = folder.getFiles();
-    var rows = [];
-    while (it.hasNext()) {
-      var f = it.next();
-      if (f.isTrashed()) continue;
-      rows.push({ file: f, updated: f.getLastUpdated() });
+    var root = DriveApp.getFolderById(FOLDER_ID);
+    var subIt = root.getFolders();
+    var subfolders = [];
+    while (subIt.hasNext()) {
+      subfolders.push(subIt.next());
     }
-    rows.sort(function (a, b) {
-      return b.updated - a.updated;
+
+    if (subfolders.length === 0) {
+      return jsonOut({ files: collectFilesInFolder_(root) });
+    }
+
+    subfolders.sort(function (a, b) {
+      return a.getName().localeCompare(b.getName(), undefined, { sensitivity: 'base' });
     });
-    var documents = rows.map(function (row) {
-      var f = row.file;
-      var id = f.getId();
-      return {
-        title: f.getName(),
-        description: f.getMimeType(),
-        url: 'https://drive.google.com/uc?export=download&id=' + id
-      };
-    });
-    return jsonOut({ documents: documents });
+
+    var folders = [];
+    var rootFiles = collectFilesInFolder_(root);
+    if (rootFiles.length > 0) {
+      folders.push({ name: 'General', files: rootFiles });
+    }
+    for (var i = 0; i < subfolders.length; i++) {
+      var sub = subfolders[i];
+      var files = collectFilesInFolder_(sub);
+      if (files.length > 0) {
+        folders.push({ name: sub.getName(), files: files });
+      }
+    }
+
+    return jsonOut({ folders: folders });
   } catch (err) {
-    return jsonOut({ documents: [], error: String(err) });
+    return jsonOut({ files: [], error: String(err) });
   }
 }
 

@@ -359,7 +359,7 @@ function initScrollAnimations() {
     }, observerOptions);
     
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.service-card, .skill-card, .portfolio-card, .about-content, .contact-content, .documentation-card');
+    const animatedElements = document.querySelectorAll('.service-card, .skill-card, .portfolio-card, .about-content, .contact-content, .documentation-card, .documentation-folder');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -422,51 +422,109 @@ function friendlyFileType(mime, filename) {
     return { label: 'File', icon: 'fa-file-lines' };
 }
 
-/** Supports { documents: [...] } or your Apps Script shape { files: [{ name, id, url, viewUrl, type, size, date }] } */
-function normalizeDriveFeed(data) {
+function normalizeDriveFile(f) {
+    if (!f || typeof f !== 'object') return null;
+    const name =
+        (f.name != null && String(f.name).trim()) ||
+        (f.title != null && String(f.title).trim()) ||
+        '';
+    if (!name) return null;
+    let downloadUrl = f.url != null ? String(f.url).trim() : '';
+    if (!downloadUrl && f.id != null) {
+        downloadUrl = 'https://drive.google.com/uc?export=download&id=' + String(f.id).trim();
+    }
+    const type = f.type != null ? String(f.type).trim() : '';
+    const sizeStr = formatFileSize(f.size);
+    let dateStr = '';
+    if (f.date) {
+        try {
+            dateStr = new Date(f.date).toLocaleDateString(undefined, {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+        } catch {
+            dateStr = '';
+        }
+    }
+    const ft = friendlyFileType(type, name);
+    return {
+        title: name,
+        description: '',
+        fileKindLabel: ft.label,
+        fileIconClass: ft.icon,
+        sizeLabel: sizeStr,
+        dateLabel: dateStr,
+        url: downloadUrl,
+        viewUrl: f.viewUrl != null ? String(f.viewUrl).trim() : ''
+    };
+}
+
+/**
+ * Build display groups from API JSON:
+ * - { folders: [ { name, files } ] } — subfolders from Apps Script
+ * - { files: [...] } with folder/category on items — grouped by that field
+ * - { files: [...] } — single unnamed section
+ * - { documents: [...] } — manual / legacy flat list
+ */
+function feedDataToGroups(data) {
     if (!data || typeof data !== 'object') return [];
-    if (Array.isArray(data.documents) && data.documents.length > 0) {
-        return data.documents;
-    }
-    if (Array.isArray(data.files) && data.files.length > 0) {
-        return data.files.map((f) => {
-            const name = (f.name != null && String(f.name).trim()) || (f.title != null && String(f.title).trim()) || '';
-            let downloadUrl = f.url != null ? String(f.url).trim() : '';
-            if (!downloadUrl && f.id != null) {
-                downloadUrl = 'https://drive.google.com/uc?export=download&id=' + String(f.id).trim();
+
+    if (Array.isArray(data.folders) && data.folders.length > 0) {
+        const out = [];
+        data.folders.forEach((fol) => {
+            const sectionName = String(fol.name != null ? fol.name : fol.title != null ? fol.title : '').trim();
+            const rawFiles = Array.isArray(fol.files) ? fol.files : [];
+            const items = rawFiles.map(normalizeDriveFile).filter(Boolean);
+            if (items.length > 0) {
+                out.push({ title: sectionName || 'Documents', items });
             }
-            const type = f.type != null ? String(f.type).trim() : '';
-            const sizeStr = formatFileSize(f.size);
-            let dateStr = '';
-            if (f.date) {
-                try {
-                    dateStr = new Date(f.date).toLocaleDateString(undefined, {
-                        year: 'numeric',
-                        month: 'short',
-                        day: 'numeric'
-                    });
-                } catch {
-                    dateStr = '';
-                }
-            }
-            const ft = friendlyFileType(type, name);
-            return {
-                title: name,
-                description: '',
-                fileKindLabel: ft.label,
-                fileIconClass: ft.icon,
-                sizeLabel: sizeStr,
-                dateLabel: dateStr,
-                url: downloadUrl,
-                viewUrl: f.viewUrl != null ? String(f.viewUrl).trim() : ''
-            };
         });
+        return out;
     }
+
+    if (Array.isArray(data.files) && data.files.length > 0) {
+        const hasFolderField = data.files.some((raw) => {
+            const k = raw.folder != null ? String(raw.folder).trim() : raw.category != null ? String(raw.category).trim() : '';
+            return Boolean(k);
+        });
+        if (hasFolderField) {
+            const order = [];
+            const map = new Map();
+            data.files.forEach((raw) => {
+                const key = String(raw.folder != null ? raw.folder : raw.category != null ? raw.category : '').trim();
+                const bucket = key || '__flat';
+                if (!map.has(bucket)) {
+                    map.set(bucket, { title: key || null, items: [] });
+                    order.push(bucket);
+                }
+                const doc = normalizeDriveFile(raw);
+                if (doc) map.get(bucket).items.push(doc);
+            });
+            if (order.length === 1 && order[0] === '__flat') {
+                const g = map.get('__flat');
+                return g.items.length ? [{ title: null, items: g.items }] : [];
+            }
+            return order
+                .map((k) => map.get(k))
+                .filter((g) => g.items.length > 0)
+                .map((g) => ({
+                    title: g.title,
+                    items: g.items
+                }));
+        }
+        const items = data.files.map(normalizeDriveFile).filter(Boolean);
+        return items.length ? [{ title: null, items }] : [];
+    }
+
+    if (Array.isArray(data.documents) && data.documents.length > 0) {
+        return [{ title: null, items: data.documents }];
+    }
+
     return [];
 }
 
-function renderDocumentationCards(list, docs, emptyMessage) {
-    list.innerHTML = '';
+function appendDocumentationCards(container, docs, emptyMessage) {
     let rendered = 0;
     docs.forEach((doc) => {
         if (!doc) return;
@@ -538,9 +596,38 @@ function renderDocumentationCards(list, docs, emptyMessage) {
             '<div class="documentation-card-actions">' +
             actionsInner +
             '</div></div></div>';
-        list.appendChild(card);
+        container.appendChild(card);
     });
     return rendered;
+}
+
+function renderDocumentationCards(container, docs, emptyMessage) {
+    container.innerHTML = '';
+    return appendDocumentationCards(container, docs, emptyMessage);
+}
+
+function renderDocumentationGrouped(rootEl, groups, emptyMessage) {
+    rootEl.innerHTML = '';
+    rootEl.className = 'documentation-root';
+    let total = 0;
+    groups.forEach((group) => {
+        if (!group.items || group.items.length === 0) return;
+        const folderSection = document.createElement('section');
+        folderSection.className = 'documentation-folder';
+        folderSection.setAttribute('aria-label', group.title || 'Downloads');
+        if (group.title) {
+            const heading = document.createElement('h3');
+            heading.className = 'documentation-folder-title';
+            heading.textContent = group.title;
+            folderSection.appendChild(heading);
+        }
+        const grid = document.createElement('div');
+        grid.className = 'documentation-grid';
+        folderSection.appendChild(grid);
+        total += appendDocumentationCards(grid, group.items, emptyMessage);
+        rootEl.appendChild(folderSection);
+    });
+    return total;
 }
 
 function fetchDriveFeed(feedUrl) {
@@ -576,8 +663,11 @@ function loadClientDocuments() {
             };
 
             const applyStatic = () => {
-                list.innerHTML = '';
-                const rendered = renderDocumentationCards(list, staticDocs, manualHint);
+                const rendered = renderDocumentationGrouped(
+                    list,
+                    [{ title: null, items: staticDocs }],
+                    manualHint
+                );
                 if (rendered === 0) showFallback();
                 else fallback.hidden = true;
             };
@@ -589,10 +679,10 @@ function loadClientDocuments() {
 
             fetchDriveFeed(feedUrl)
                 .then((data) => {
-                    const fromDrive = normalizeDriveFeed(data);
-                    list.innerHTML = '';
-                    if (fromDrive.length > 0) {
-                        const rendered = renderDocumentationCards(list, fromDrive, driveHint);
+                    const groups = feedDataToGroups(data);
+                    const itemCount = groups.reduce((sum, g) => sum + (g.items ? g.items.length : 0), 0);
+                    if (itemCount > 0) {
+                        const rendered = renderDocumentationGrouped(list, groups, driveHint);
                         if (rendered === 0) applyStatic();
                         else fallback.hidden = true;
                     } else {
