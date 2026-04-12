@@ -5,7 +5,7 @@ Allow: /
 Allow: /
 
 # Sitemap location
-Sitemap: https://asiimwelucky.github.io/sitemap.xml
+Sitemap: https://asmartdev.netlify.app/sitemap.xml
 
 # Crawl delay (optional - be nice to servers)
 Crawl-delay: 1
