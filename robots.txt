@@ -1,0 +1,35 @@
+User-agent: *
+Allow: /
+
+# Allow search engines to crawl all content
+Allow: /
+
+# Sitemap location
+Sitemap: https://asiimwelucky.github.io/sitemap.xml
+
+# Crawl delay (optional - be nice to servers)
+Crawl-delay: 1
+
+# Specific instructions for major search engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+# Block common non-content paths
+Disallow: /temp/
+Disallow: /private/
+Disallow: /*.tmp$
+Disallow: /*.log$
+
+# Allow important files
+Allow: /sitemap.xml
+Allow: /robots.txt
+Allow: /manifest.json

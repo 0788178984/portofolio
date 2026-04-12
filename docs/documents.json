@@ -1,0 +1,16 @@
+{
+  "driveFeedUrl": "https://script.google.com/macros/s/AKfycbxX0pzLj-_rvfvj1oZ2V0Q5WTPFriw6oCJk4heXLm2ZQUMbSnJT7_lHJ3qR7A9u6Hgn/exec",
+  "documents": [
+    {
+      "title": "Client onboarding checklist",
+      "description": "Getting started steps for new projects. Replace the URL with a Google Drive direct-download link or a file hosted in this repo under docs/.",
+      "url": ""
+    },
+    {
+      "title": "Project delivery & handover",
+      "description": "What you receive at delivery and how to request changes.",
+      "url": ""
+    }
+  ],
+  "driveFolderHint": "For Google Drive: share the file as Anyone with the link can view, then use https://drive.google.com/uc?export=download&id=YOUR_FILE_ID"
+}

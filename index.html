@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asiimwe Lucky - Web Designer & App Developer Uganda | Asmart</title>
+    <meta name="description" content="Asiimwe Lucky is Uganda's top web designer and mobile app developer based in Kagadi. Founder of Asmart. Building beautiful websites and Android apps for businesses across Uganda and Africa.">
+    <meta name="keywords" content="Asiimwe Lucky, web designer Uganda, app developer Uganda, Kagadi developer, Asmart Uganda, React Native developer Uganda, mobile app Uganda, website design Uganda">
+    <meta name="author" content="Asiimwe Lucky">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Asiimwe Lucky - Web Designer & App Developer Uganda | Asmart">
+    <meta property="og:description" content="Asiimwe Lucky is Uganda's top web designer and mobile app developer based in Kagadi. Founder of Asmart. Building beautiful websites and Android apps for businesses across Uganda and Africa.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://asiimwelucky.github.io">
+    <meta property="og:image" content="Assets/ogimage.jpg">
+    <meta property="og:site_name" content="Asiimwe Lucky - Asmart Uganda">
+    
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Asiimwe Lucky - Web Designer & App Developer Uganda | Asmart">
+    <meta name="twitter:description" content="Asiimwe Lucky is Uganda's top web designer and mobile app developer based in Kagadi. Founder of Asmart. Building beautiful websites and Android apps for businesses across Uganda and Africa.">
+    <meta name="twitter:image" content="Assets/twitterimage.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://asiimwelucky.github.io">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="Assets/Apple Touch Icon.jpg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Google AdSense -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3516477873879445"
+         crossorigin="anonymous"></script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Asiimwe Lucky",
+        "jobTitle": "Web Designer & Mobile App Developer",
+        "description": "Asiimwe Lucky is a passionate web designer and mobile app developer from Kagadi, Western Uganda. Founder of Asmart, building beautiful digital solutions for businesses across Uganda and Africa.",
+        "url": "https://asiimwelucky.github.io",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Kagadi",
+            "addressRegion": "Western Uganda",
+            "addressCountry": "Uganda"
+        },
+        "email": "asiimwelucky34@gmail.com",
+        "telephone": "+256-779654710",
+        "sameAs": [
+            "https://github.com/asiimwelucky",
+            "https://linkedin.com/in/asiimwelucky",
+            "https://facebook.com/asiimwelucky",
+            "https://asmartcom.netlify.app"
+        ],
+        "knowsAbout": [
+            "Web Design",
+            "Mobile App Development",
+            "React Native",
+            "HTML5",
+            "CSS3",
+            "JavaScript",
+            "UI/UX Design",
+            "SEO Optimization"
+        ],
+        "worksFor": {
+            "@type": "Organization",
+            "name": "Asmart",
+            "url": "https://asmartcom.netlify.app"
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader" class="preloader">
+        <div class="preloader-content">
+            <div class="loader-logo">
+                <span class="logo-text">AL</span>
+            </div>
+            <div class="loader-text">Loading Excellence...</div>
+            <div class="loader-progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress" class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="#home" class="logo-link">
+                    <span class="logo-text">Lucky.dev</span>
+                </a>
+            </div>
+            
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link active" data-section="home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link" data-section="about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link" data-section="skills">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link" data-section="portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#documentation" class="nav-link" data-section="documentation">Docs</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#services" class="nav-link" data-section="services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-toggle">
+                    <button id="theme-toggle" class="theme-toggle-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hamburger" id="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="particles" id="particles"></div>
+                <div class="animated-gradient"></div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="highlight">Asiimwe Lucky</span>
+                    </h1>
+                    <div class="hero-subtitle">
+                        <span class="typed-text" id="typed-text"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-description">
+                        Uganda's premier <strong>web designer</strong> and <strong>mobile app developer</strong> from Kagadi, 
+                        transforming ideas into powerful digital experiences across Africa.
+                    </p>
+                    
+                    <div class="hero-buttons">
+                        <a href="#portfolio" class="btn btn-primary">
+                            <i class="fas fa-briefcase"></i>
+                            View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <i class="fas fa-envelope"></i>
+                            Hire Me
+                        </a>
+                    </div>
+                    
+                    <div class="hero-social">
+                        <a href="https://github.com/asiimwelucky" target="_blank" class="social-icon" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/asiimwelucky" target="_blank" class="social-icon" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://wa.me/256779654710" target="_blank" class="social-icon" aria-label="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://facebook.com/asiimwelucky" target="_blank" class="social-icon" aria-label="Facebook">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-image">
+                    <div class="profile-image">
+                        <img src="Assets/profile-img.jpg" alt="Asiimwe Lucky - Web Designer Uganda" class="profile-img">
+                        <div class="profile-glow"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="floating-icons">
+                <div class="floating-icon" data-tech="React Native">
+                    <i class="fab fa-react"></i>
+                </div>
+                <div class="floating-icon" data-tech="Android">
+                    <i class="fab fa-android"></i>
+                </div>
+                <div class="floating-icon" data-tech="HTML5">
+                    <i class="fab fa-html5"></i>
+                </div>
+                <div class="floating-icon" data-tech="CSS3">
+                    <i class="fab fa-css3-alt"></i>
+                </div>
+                <div class="floating-icon" data-tech="JavaScript">
+                    <i class="fab fa-js"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">About <span class="highlight">Asiimwe Lucky</span></h2>
+                    <p class="section-subtitle">Uganda's Leading Digital Solutions Expert</p>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="about-description">
+                            I am <strong>Asiimwe Lucky</strong>, a passionate <strong>web designer</strong> and <strong>mobile app developer</strong> from Kagadi, Western Uganda. 
+                            I am the founder of <strong>Asmart</strong>, a digital solutions company dedicated to building beautiful, functional, and impactful digital products for businesses across Uganda and Africa. 
+                            With expertise in React Native, Expo, HTML, CSS, JavaScript, and modern web technologies, I transform ideas into powerful digital experiences.
+                        </p>
+                        
+                        <div class="about-stats">
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="3">0</div>
+                                <div class="stat-label">+ Years Experience</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="20">0</div>
+                                <div class="stat-label">+ Projects Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="10">0</div>
+                                <div class="stat-label">+ Happy Clients</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-number" data-target="2">0</div>
+                                <div class="stat-label">+ Apps Published</div>
+                            </div>
+                        </div>
+                        
+                        <div class="about-details">
+                            <div class="detail-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Location: Kagadi, Uganda</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-briefcase"></i>
+                                <span>Available for hire</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-building"></i>
+                                <span>Founder: Asmart Uganda</span>
+                            </div>
+                        </div>
+                        
+                        <div class="about-buttons">
+                            <a href="#" class="btn btn-primary" download>
+                                <i class="fas fa-download"></i>
+                                Download CV
+                            </a>
+                            <a href="#contact" class="btn btn-secondary">
+                                <i class="fas fa-envelope"></i>
+                                Get In Touch
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="about-image">
+                        <div class="about-img-container">
+                            <img src="Assets/about-img.jpg" alt="Asiimwe Lucky - Web Designer and App Developer Uganda" class="about-img">
+                            <div class="about-img-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Technical <span class="highlight">Skills</span></h2>
+                    <p class="section-subtitle">Expertise in Modern Web & Mobile Technologies</p>
+                </div>
+                
+                <div class="skills-content">
+                    <div class="skills-grid">
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-react"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">React Native / Expo</h3>
+                                    <span class="skill-percentage">90%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="90"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-html5"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">HTML5 / CSS3</h3>
+                                    <span class="skill-percentage">95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-js"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">JavaScript</h3>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-paint-brush"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">Web Design</h3>
+                                    <span class="skill-percentage">95%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="95"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fab fa-android"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">Android Development</h3>
+                                    <span class="skill-percentage">80%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="80"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-search"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">SEO Optimization</h3>
+                                    <span class="skill-percentage">85%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="85"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-mobile-alt"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">UI/UX Design</h3>
+                                    <span class="skill-percentage">88%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="88"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="skill-card">
+                            <div class="skill-header">
+                                <div class="skill-icon">
+                                    <i class="fas fa-database"></i>
+                                </div>
+                                <div class="skill-info">
+                                    <h3 class="skill-name">Firebase / APIs</h3>
+                                    <span class="skill-percentage">80%</span>
+                                </div>
+                            </div>
+                            <div class="skill-progress">
+                                <div class="progress-bar" data-progress="80"></div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tools-section">
+                        <h3 class="tools-title">Tools & Technologies</h3>
+                        <div class="tools-grid">
+                            <div class="tool-badge">
+                                <i class="fas fa-code"></i>
+                                <span>VS Code</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fab fa-github"></i>
+                                <span>GitHub</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fab fa-figma"></i>
+                                <span>Figma</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fas fa-rocket"></i>
+                                <span>Netlify</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fas fa-mobile"></i>
+                                <span>EAS</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fas fa-cube"></i>
+                                <span>Expo</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fab fa-android"></i>
+                                <span>Android Studio</span>
+                            </div>
+                            <div class="tool-badge">
+                                <i class="fas fa-fire"></i>
+                                <span>Firebase</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="portfolio">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Featured <span class="highlight">Portfolio</span></h2>
+                    <p class="section-subtitle">Recent Projects by Asiimwe Lucky</p>
+                </div>
+                
+                <div class="portfolio-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="web">Web</button>
+                    <button class="filter-btn" data-filter="mobile">Mobile</button>
+                    <button class="filter-btn" data-filter="design">Design</button>
+                </div>
+                
+                <div class="portfolio-grid">
+                    <div class="portfolio-item" data-category="mobile">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/Uganda Radio Streaming App.png" alt="RADIOUG - Uganda Radio Streaming App">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">RADIOUG</h3>
+                                <p class="portfolio-description">Uganda's radio streaming app with live stations and podcasts</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Expo</span>
+                                    <span class="tag">Android</span>
+                                    <span class="tag">Audio Streaming</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#" class="portfolio-action portfolio-action-download" data-placeholder="true" title="Set href to a Google Drive download or APK link"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
+                                    <a href="#contact" class="portfolio-action portfolio-action-install"><i class="fas fa-mobile-alt" aria-hidden="true"></i> Request install</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/Asmart Company Portfolio Website.jpg" alt="Asmart Company Portfolio Website">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="https://asmartcom.netlify.app" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">Asmart Website</h3>
+                                <p class="portfolio-description">Company portfolio and services website for Asmart Uganda</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML</span>
+                                    <span class="tag">CSS</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">SEO</span>
+                                    <span class="tag">Netlify</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#documentation" class="portfolio-action portfolio-action-download"><i class="fas fa-download" aria-hidden="true"></i> Download kit</a>
+                                    <a href="https://asmartcom.netlify.app/" class="portfolio-action portfolio-action-install" target="_blank" rel="noopener noreferrer"><i class="fas fa-plus-circle" aria-hidden="true"></i> Install / open app</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="mobile">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/E-Commerce Mobile App.jpg" alt="E-Commerce Mobile App">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">E-Commerce App</h3>
+                                <p class="portfolio-description">Mobile shopping app for Uganda businesses</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Firebase</span>
+                                    <span class="tag">Payment</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#" class="portfolio-action portfolio-action-download" data-placeholder="true" title="Set href to your Google Drive file ID or hosted build"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
+                                    <a href="#contact" class="portfolio-action portfolio-action-install"><i class="fas fa-mobile-alt" aria-hidden="true"></i> Request install</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="web">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/Business Portfolio Website.jpg" alt="Business Portfolio Website">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">Business Portfolio</h3>
+                                <p class="portfolio-description">Modern business website with booking system</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">HTML5</span>
+                                    <span class="tag">CSS3</span>
+                                    <span class="tag">JavaScript</span>
+                                    <span class="tag">Responsive</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#documentation" class="portfolio-action portfolio-action-download"><i class="fas fa-download" aria-hidden="true"></i> Download kit</a>
+                                    <a href="#" class="portfolio-action portfolio-action-install" data-placeholder="true" title="Set href to live site or PWA install URL"><i class="fas fa-globe" aria-hidden="true"></i> Visit / install</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="design">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/UIUX Design Project.jpg" alt="UI/UX Design Project">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-figma"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">Mobile App UI Design</h3>
+                                <p class="portfolio-description">Complete UI/UX design for mobile application</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">UI Design</span>
+                                    <span class="tag">UX Design</span>
+                                    <span class="tag">Figma</span>
+                                    <span class="tag">Prototyping</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#documentation" class="portfolio-action portfolio-action-download"><i class="fas fa-download" aria-hidden="true"></i> Download kit</a>
+                                    <a href="#" class="portfolio-action portfolio-action-install" data-placeholder="true" title="Set href to Figma prototype or handoff link"><i class="fab fa-figma" aria-hidden="true"></i> Open design</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="portfolio-item" data-category="mobile">
+                        <div class="portfolio-card">
+                            <div class="portfolio-image">
+                                <img src="Assets/Education Mobile App.jpg" alt="Education Mobile App">
+                                <div class="portfolio-overlay">
+                                    <div class="portfolio-links">
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fas fa-external-link-alt"></i>
+                                        </a>
+                                        <a href="#" class="portfolio-link" target="_blank">
+                                            <i class="fab fa-github"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="portfolio-content">
+                                <h3 class="portfolio-title">Education App</h3>
+                                <p class="portfolio-description">Learning management system for Uganda schools</p>
+                                <div class="portfolio-tags">
+                                    <span class="tag">React Native</span>
+                                    <span class="tag">Expo</span>
+                                    <span class="tag">Education</span>
+                                </div>
+                                <div class="portfolio-actions">
+                                    <a href="#documentation" class="portfolio-action portfolio-action-docs"><i class="fas fa-file-alt" aria-hidden="true"></i> Client docs</a>
+                                    <a href="#" class="portfolio-action portfolio-action-download" data-placeholder="true" title="Set href to a Google Drive download or APK link"><i class="fas fa-download" aria-hidden="true"></i> Download</a>
+                                    <a href="#contact" class="portfolio-action portfolio-action-install"><i class="fas fa-mobile-alt" aria-hidden="true"></i> Request install</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Client documentation (files in docs/ + optional Google Drive links) -->
+        <section id="documentation" class="documentation">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Client <span class="highlight">Documentation</span></h2>
+                    <p class="section-subtitle">Guides clients can download. Optionally sync automatically from a Google Drive folder using the free Apps Script in <code class="inline-code">docs/google-apps-script/Code.gs</code>, or list files manually below.</p>
+                </div>
+                <p class="documentation-hint">
+                    <i class="fab fa-google-drive" aria-hidden="true"></i>
+                    <strong>Automatic:</strong> deploy the script, set <code class="inline-code">driveFeedUrl</code> in <code class="inline-code">docs/documents.json</code> to your web app URL—new uploads in that folder appear after a refresh.
+                    <strong>Manual:</strong> share each file and use
+                    <code class="inline-code">https://drive.google.com/uc?export=download&amp;id=FILE_ID</code>
+                </p>
+                <div id="documentation-list" class="documentation-grid" role="list">
+                    <!-- Filled by script.js from docs/documents.json -->
+                </div>
+                <p id="documentation-fallback" class="documentation-fallback" hidden>
+                    Set <code class="inline-code">driveFeedUrl</code> to your deployed Apps Script URL, or add manual entries in <code class="inline-code">docs/documents.json</code>.
+                </p>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Premium <span class="highlight">Services</span></h2>
+                    <p class="section-subtitle">Digital Solutions by Asiimwe Lucky</p>
+                </div>
+                
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3 class="service-title">Web Design & Development</h3>
+                        <p class="service-description">Beautiful, fast, SEO-optimized websites that convert visitors into customers for businesses across Uganda.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Responsive Design</li>
+                            <li><i class="fas fa-check"></i> SEO Optimization</li>
+                            <li><i class="fas fa-check"></i> Fast Loading</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="service-title">Mobile App Development</h3>
+                        <p class="service-description">Cross-platform Android apps built with React Native and Expo for Uganda's growing mobile market.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> React Native</li>
+                            <li><i class="fas fa-check"></i> App Store Publishing</li>
+                            <li><i class="fas fa-check"></i> API Integration</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-paint-brush"></i>
+                        </div>
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <p class="service-description">User-centered designs that are beautiful, intuitive and engaging for optimal user experience.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> User Research</li>
+                            <li><i class="fas fa-check"></i> Wireframing</li>
+                            <li><i class="fas fa-check"></i> Prototyping</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <h3 class="service-title">SEO Optimization</h3>
+                        <p class="service-description">Get your website found on Google, Bing and other search engines to reach more customers in Uganda.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Keyword Research</li>
+                            <li><i class="fas fa-check"></i> On-Page SEO</li>
+                            <li><i class="fas fa-check"></i> Analytics Setup</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3 class="service-title">App Publishing</h3>
+                        <p class="service-description">Complete app store submission to Google Play, Amazon and APKPure for maximum reach.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Store Optimization</li>
+                            <li><i class="fas fa-check"></i> Submission Process</li>
+                            <li><i class="fas fa-check"></i> Updates & Maintenance</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="service-title">Digital Consulting</h3>
+                        <p class="service-description">Expert advice on your digital strategy, technology stack and growth for businesses in Africa.</p>
+                        <ul class="service-features">
+                            <li><i class="fas fa-check"></i> Strategy Planning</li>
+                            <li><i class="fas fa-check"></i> Technology Consulting</li>
+                            <li><i class="fas fa-check"></i> Growth Hacking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Client <span class="highlight">Testimonials</span></h2>
+                    <p class="section-subtitle">What Clients Say About Asiimwe Lucky</p>
+                </div>
+                
+                <div class="testimonials-slider">
+                    <div class="testimonial-card active">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Asiimwe Lucky delivered an exceptional website for our business. His attention to detail and understanding of Uganda's market is unmatched. Highly recommended!"
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="Assets/John Doe.jpg" alt="John Doe" class="author-image">
+                                <div class="author-info">
+                                    <h4 class="author-name">John Doe</h4>
+                                    <p class="author-company">CEO, Tech Uganda Ltd</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Working with Asiimwe Lucky on our mobile app was a great experience. He's professional, skilled, and delivers on time. The best app developer in Kagadi!"
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="Assets/Sarah Mwesigwa.jpg" alt="Sarah Mwesigwa" class="author-image">
+                                <div class="author-info">
+                                    <h4 class="author-name">Sarah Mwesigwa</h4>
+                                    <p class="author-company">Founder, Mwesigwa Enterprises</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <div class="testimonial-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <p class="testimonial-text">
+                                "Asiimwe Lucky transformed our online presence with his web design expertise. Our website now ranks #1 on Google for our target keywords in Uganda."
+                            </p>
+                            <div class="testimonial-author">
+                                <img src="Assets/Peter Katumba.jpg" alt="Peter Katumba" class="author-image">
+                                <div class="author-info">
+                                    <h4 class="author-name">Peter Katumba</h4>
+                                    <p class="author-company">Director, Katumba & Co</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-controls">
+                    <button class="testimonial-btn prev-btn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="testimonial-btn next-btn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">Contact <span class="highlight">Asiimwe Lucky</span></h2>
+                    <p class="section-subtitle">Let's Build Something Amazing Together</p>
+                </div>
+                
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 class="contact-title">Get In Touch</h3>
+                        <p class="contact-description">
+                            Ready to start your next project? Whether you need a stunning website, a powerful mobile app, or expert digital consulting, Asiimwe Lucky is here to help businesses across Uganda and Africa succeed online.
+                        </p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Location</h4>
+                                    <p>Kagadi, Western Uganda</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Email</h4>
+                                    <p>asiimwelucky34@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>WhatsApp</h4>
+                                    <p>+256-779654710</p>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item">
+                                <div class="contact-icon">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <div class="contact-text">
+                                    <h4>Website</h4>
+                                    <p>asmartcom.netlify.app</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-social">
+                            <h4>Follow Asmart</h4>
+                            <div class="social-links">
+                                <a href="https://github.com/asiimwelucky" target="_blank" class="social-link">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/asiimwelucky" target="_blank" class="social-link">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://facebook.com/asiimwelucky" target="_blank" class="social-link">
+                                    <i class="fab fa-facebook"></i>
+                                </a>
+                                <a href="https://wa.me/256779654710" target="_blank" class="social-link">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        
+                        <div id="form-message" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h3 class="footer-title">Lucky.dev</h3>
+                    <p class="footer-tagline">Building Uganda's Digital Future</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Quick Links</h4>
+                        <ul>
+                            <li><a href="#about">About Asiimwe Lucky</a></li>
+                            <li><a href="#portfolio">Portfolio</a></li>
+                            <li><a href="#documentation">Client docs</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Services</h4>
+                        <ul>
+                            <li><a href="#services">Web Design</a></li>
+                            <li><a href="#services">Mobile Apps</a></li>
+                            <li><a href="#services">UI/UX Design</a></li>
+                            <li><a href="#services">SEO Optimization</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Connect</h4>
+                        <ul>
+                            <li><a href="https://github.com/asiimwelucky" target="_blank">GitHub</a></li>
+                            <li><a href="https://linkedin.com/in/asiimwelucky" target="_blank">LinkedIn</a></li>
+                            <li><a href="https://wa.me/256XXXXXXXXX" target="_blank">WhatsApp</a></li>
+                            <li><a href="https://asmartcom.netlify.app" target="_blank">Asmart Website</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-divider"></div>
+                <p class="footer-copyright">
+                    © 2026 <strong>Asiimwe Lucky</strong> | <strong>Asmart Uganda</strong> | Web Designer & App Developer Kagadi
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/256779654710" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Asmart AI help: toggle opens panel with https://asmartcom.netlify.app/ -->
+    <div id="ai-help-backdrop" class="ai-help-backdrop" hidden aria-hidden="true"></div>
+    <aside id="ai-help-panel" class="ai-help-panel" aria-label="Asmart AI assistant" aria-hidden="true" hidden>
+        <div class="ai-help-panel-header">
+            <span class="ai-help-panel-title"><i class="fas fa-robot" aria-hidden="true"></i> Asmart AI</span>
+            <a href="https://asmartcom.netlify.app/" class="ai-help-open-tab" target="_blank" rel="noopener noreferrer">Open in tab</a>
+            <button type="button" id="ai-help-close" class="ai-help-close" aria-label="Close AI help">
+                <i class="fas fa-times" aria-hidden="true"></i>
+            </button>
+        </div>
+        <iframe id="ai-help-frame" class="ai-help-frame" title="Asmart AI" data-src="https://asmartcom.netlify.app/" loading="lazy"></iframe>
+    </aside>
+    <button type="button" id="ai-help-toggle" class="ai-help-float" aria-expanded="false" aria-controls="ai-help-panel" title="Open Asmart AI help">
+        <i class="fas fa-comments" aria-hidden="true"></i>
+        <span class="ai-help-float-label">AI Help</span>
+    </button>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor">
+        <div class="cursor-dot"></div>
+        <div class="cursor-ring"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>

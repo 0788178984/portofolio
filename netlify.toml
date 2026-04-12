@@ -1,0 +1,6 @@
+# Static HTML/CSS/JS — serve this folder as the site root.
+# If Netlify still shows 404, open Site settings → Build & deploy and set
+# “Publish directory” to the folder that contains this file (often "." or your repo subfolder name).
+
+[build]
+  publish = "."
