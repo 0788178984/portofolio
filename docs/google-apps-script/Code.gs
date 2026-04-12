@@ -4,6 +4,8 @@
  * Setup:
  * 1. In Drive, create a folder for client docs. Open it and copy the ID from the URL:
  *    https://drive.google.com/drive/folders/THIS_IS_THE_FOLDER_ID
+ *    IMPORTANT: Share that folder (Share → General access) as "Anyone with the link" = Viewer.
+ *    Otherwise clients see 403 or "Request access" and must sign in.
  * 2. Go to https://script.google.com → New project → paste this file → set FOLDER_ID below.
  * 3. Deploy → New deployment → Type: Web app
  *    - Execute as: Me

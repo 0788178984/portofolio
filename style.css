@@ -946,40 +946,6 @@ a.portfolio-action[data-placeholder="true"] {
     border: 1px solid var(--glass-border);
 }
 
-.documentation-owner-note {
-    max-width: 640px;
-    margin: 0 auto var(--spacing-lg);
-    font-size: 0.82rem;
-    color: rgba(255, 255, 255, 0.45);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
-    padding: 0.35rem 0.85rem;
-    background: rgba(255, 255, 255, 0.03);
-}
-
-.documentation-owner-note summary {
-    cursor: pointer;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.5);
-    list-style-position: outside;
-    padding: 0.25rem 0;
-}
-
-.documentation-owner-note summary:hover {
-    color: rgba(255, 255, 255, 0.7);
-}
-
-.documentation-owner-note[open] {
-    padding: var(--spacing-sm) var(--spacing-md);
-}
-
-.documentation-owner-note p {
-    margin-top: var(--spacing-sm);
-    line-height: 1.55;
-    color: rgba(255, 255, 255, 0.55);
-    font-size: 0.8rem;
-}
-
 .documentation-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
@@ -1126,20 +1092,6 @@ a.portfolio-action[data-placeholder="true"] {
 body.light-mode .inline-code {
     background: rgba(10, 14, 39, 0.06);
     border-color: rgba(10, 14, 39, 0.12);
-}
-
-body.light-mode .documentation-owner-note {
-    color: var(--text-muted);
-    border-color: rgba(10, 14, 39, 0.1);
-    background: rgba(10, 14, 39, 0.03);
-}
-
-body.light-mode .documentation-owner-note summary {
-    color: var(--text-muted);
-}
-
-body.light-mode .documentation-owner-note p {
-    color: var(--text-muted);
 }
 
 body.light-mode .documentation-card-title {
