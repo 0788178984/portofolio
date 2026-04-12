@@ -934,6 +934,7 @@ a.portfolio-action[data-placeholder="true"] {
 /* Client documentation */
 .documentation {
     background: var(--primary-color);
+    padding-bottom: calc(var(--spacing-xl) + 5.5rem);
 }
 
 .inline-code {
@@ -945,27 +946,43 @@ a.portfolio-action[data-placeholder="true"] {
     border: 1px solid var(--glass-border);
 }
 
-.documentation-hint {
-    max-width: 800px;
+.documentation-owner-note {
+    max-width: 640px;
     margin: 0 auto var(--spacing-lg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    color: rgba(255, 255, 255, 0.85);
-    background: var(--glass-bg);
-    border: 1px solid var(--glass-border);
-    border-radius: 16px;
-    text-align: center;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 0.35rem 0.85rem;
+    background: rgba(255, 255, 255, 0.03);
 }
 
-.documentation-hint .fab {
-    color: #4285f4;
-    margin-right: 0.35rem;
+.documentation-owner-note summary {
+    cursor: pointer;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.5);
+    list-style-position: outside;
+    padding: 0.25rem 0;
+}
+
+.documentation-owner-note summary:hover {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.documentation-owner-note[open] {
+    padding: var(--spacing-sm) var(--spacing-md);
+}
+
+.documentation-owner-note p {
+    margin-top: var(--spacing-sm);
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 0.8rem;
 }
 
 .documentation-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
     gap: var(--spacing-md);
 }
 
@@ -983,27 +1000,87 @@ a.portfolio-action[data-placeholder="true"] {
     box-shadow: var(--shadow-md);
 }
 
-.documentation-card h3 {
-    font-size: 1.15rem;
-    margin-bottom: var(--spacing-sm);
+.documentation-card-inner {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+}
+
+.documentation-card-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    color: var(--secondary-color);
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.25);
+}
+
+.documentation-card-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.documentation-card-title {
+    font-size: 1.08rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin: 0 0 var(--spacing-sm);
     color: var(--secondary-color);
 }
 
-.documentation-card p {
-    font-size: 0.95rem;
-    color: rgba(255, 255, 255, 0.82);
-    line-height: 1.6;
+.documentation-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
     margin-bottom: var(--spacing-md);
+}
+
+.doc-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.65rem;
+    border-radius: 999px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid var(--glass-border);
+}
+
+.doc-chip-type {
+    color: var(--secondary-color);
+    border-color: rgba(255, 215, 0, 0.35);
+    background: rgba(255, 215, 0, 0.08);
+}
+
+.documentation-card-desc {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.55;
+    margin: 0 0 var(--spacing-md);
+}
+
+.documentation-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .documentation-card .btn-doc {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
-    padding: var(--spacing-xs) var(--spacing-md);
+    padding: 0.5rem 1.1rem;
     border-radius: 999px;
     font-weight: 600;
-    font-size: 0.9rem;
+    font-size: 0.875rem;
     text-decoration: none;
     background: linear-gradient(135deg, var(--secondary-color), var(--accent-color));
     color: var(--primary-color);
@@ -1017,22 +1094,17 @@ a.portfolio-action[data-placeholder="true"] {
     box-shadow: var(--shadow-glow);
 }
 
-.documentation-view-link {
-    display: inline-block;
-    margin-left: var(--spacing-sm);
-    font-size: 0.88rem;
-    font-weight: 600;
-    color: rgba(255, 255, 255, 0.75);
-    text-decoration: underline;
-    text-underline-offset: 3px;
+.documentation-card .btn-doc-outline {
+    background: transparent;
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+    box-shadow: none;
 }
 
-.documentation-view-link:hover {
-    color: var(--secondary-color);
-}
-
-body.light-mode .documentation-view-link {
-    color: var(--text-muted);
+.documentation-card .btn-doc-outline:hover {
+    border-color: #4285f4;
+    color: #a8c7fa;
+    box-shadow: none;
 }
 
 .documentation-soon {
@@ -1045,6 +1117,10 @@ body.light-mode .documentation-view-link {
     text-align: center;
     color: rgba(255, 255, 255, 0.7);
     margin-top: var(--spacing-md);
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.5;
 }
 
 body.light-mode .inline-code {
@@ -1052,9 +1128,48 @@ body.light-mode .inline-code {
     border-color: rgba(10, 14, 39, 0.12);
 }
 
-body.light-mode .documentation-hint,
-body.light-mode .documentation-card p {
+body.light-mode .documentation-owner-note {
     color: var(--text-muted);
+    border-color: rgba(10, 14, 39, 0.1);
+    background: rgba(10, 14, 39, 0.03);
+}
+
+body.light-mode .documentation-owner-note summary {
+    color: var(--text-muted);
+}
+
+body.light-mode .documentation-owner-note p {
+    color: var(--text-muted);
+}
+
+body.light-mode .documentation-card-title {
+    color: var(--accent-color);
+}
+
+body.light-mode .doc-chip {
+    color: var(--text-dark);
+    background: rgba(10, 14, 39, 0.05);
+    border-color: rgba(10, 14, 39, 0.12);
+}
+
+body.light-mode .doc-chip-type {
+    color: var(--accent-color);
+    border-color: rgba(255, 215, 0, 0.5);
+    background: rgba(255, 215, 0, 0.12);
+}
+
+body.light-mode .documentation-card-desc {
+    color: var(--text-muted);
+}
+
+body.light-mode .documentation-card .btn-doc-outline {
+    color: var(--text-light);
+    border-color: rgba(10, 14, 39, 0.2);
+}
+
+body.light-mode .documentation-card .btn-doc-outline:hover {
+    border-color: #4285f4;
+    color: #1a73e8;
 }
 
 /* Asmart AI floating help */
@@ -1155,7 +1270,7 @@ body.light-mode .documentation-card p {
 
 .ai-help-float {
     position: fixed;
-    bottom: 95px;
+    bottom: 118px;
     right: 30px;
     z-index: 998;
     display: inline-flex;
@@ -1824,7 +1939,7 @@ body:hover .custom-cursor {
     }
 
     .ai-help-float {
-        bottom: 78px;
+        bottom: 92px;
         right: 20px;
         padding: 0.55rem 0.85rem;
         font-size: 0.8rem;
@@ -1836,6 +1951,20 @@ body:hover .custom-cursor {
 
     .portfolio-actions {
         justify-content: flex-start;
+    }
+
+    .documentation-card-inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .documentation-card-meta {
+        justify-content: center;
+    }
+
+    .documentation-card-actions {
+        justify-content: center;
     }
 }
 

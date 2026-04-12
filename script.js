@@ -392,6 +392,36 @@ function formatFileSize(bytes) {
     return (n / (1024 * 1024)).toFixed(1) + ' MB';
 }
 
+function friendlyFileType(mime, filename) {
+    const m = (mime || '').toLowerCase();
+    const ext = ((filename || '').split('.').pop() || '').toLowerCase();
+    if (m.includes('word') || ext === 'docx' || ext === 'doc') {
+        return { label: 'Word', icon: 'fa-file-word' };
+    }
+    if (m === 'application/pdf' || ext === 'pdf') {
+        return { label: 'PDF', icon: 'fa-file-pdf' };
+    }
+    if (m.includes('spreadsheet') || ext === 'xlsx' || ext === 'xls' || ext === 'csv') {
+        return { label: 'Spreadsheet', icon: 'fa-file-excel' };
+    }
+    if (m.includes('presentation') || ext === 'pptx' || ext === 'ppt') {
+        return { label: 'Slides', icon: 'fa-file-powerpoint' };
+    }
+    if (m.startsWith('image/')) {
+        return { label: 'Image', icon: 'fa-file-image' };
+    }
+    if (m.includes('zip') || ext === 'zip' || ext === 'rar' || ext === '7z') {
+        return { label: 'Archive', icon: 'fa-file-zipper' };
+    }
+    if (ext === 'txt' || m === 'text/plain') {
+        return { label: 'Text', icon: 'fa-file-lines' };
+    }
+    if (ext) {
+        return { label: ext.toUpperCase(), icon: 'fa-file-lines' };
+    }
+    return { label: 'File', icon: 'fa-file-lines' };
+}
+
 /** Supports { documents: [...] } or your Apps Script shape { files: [{ name, id, url, viewUrl, type, size, date }] } */
 function normalizeDriveFeed(data) {
     if (!data || typeof data !== 'object') return [];
@@ -410,18 +440,23 @@ function normalizeDriveFeed(data) {
             let dateStr = '';
             if (f.date) {
                 try {
-                    dateStr = new Date(f.date).toLocaleString(undefined, {
-                        dateStyle: 'medium',
-                        timeStyle: 'short'
+                    dateStr = new Date(f.date).toLocaleDateString(undefined, {
+                        year: 'numeric',
+                        month: 'short',
+                        day: 'numeric'
                     });
                 } catch {
                     dateStr = '';
                 }
             }
-            const descParts = [type, sizeStr, dateStr].filter(Boolean);
+            const ft = friendlyFileType(type, name);
             return {
                 title: name,
-                description: descParts.join(' · '),
+                description: '',
+                fileKindLabel: ft.label,
+                fileIconClass: ft.icon,
+                sizeLabel: sizeStr,
+                dateLabel: dateStr,
                 url: downloadUrl,
                 viewUrl: f.viewUrl != null ? String(f.viewUrl).trim() : ''
             };
@@ -448,26 +483,61 @@ function renderDocumentationCards(list, docs, emptyMessage) {
         const card = document.createElement('article');
         card.className = 'documentation-card';
         card.setAttribute('role', 'listitem');
-        let actions = hasUrl
+
+        const icon =
+            doc.fileIconClass && /^fa-[a-z0-9-]+$/.test(doc.fileIconClass)
+                ? doc.fileIconClass
+                : 'fa-file-lines';
+
+        const hasMeta = Boolean(doc.fileKindLabel || doc.sizeLabel || doc.dateLabel);
+        let metaBlock = '';
+        if (hasMeta) {
+            metaBlock = '<div class="documentation-card-meta">';
+            if (doc.fileKindLabel) {
+                metaBlock +=
+                    '<span class="doc-chip doc-chip-type"><i class="fas ' +
+                    icon +
+                    '" aria-hidden="true"></i> ' +
+                    escapeHtml(doc.fileKindLabel) +
+                    '</span>';
+            }
+            if (doc.sizeLabel) {
+                metaBlock += '<span class="doc-chip">' + escapeHtml(doc.sizeLabel) + '</span>';
+            }
+            if (doc.dateLabel) {
+                metaBlock += '<span class="doc-chip">' + escapeHtml(doc.dateLabel) + '</span>';
+            }
+            metaBlock += '</div>';
+        } else if (doc.description) {
+            metaBlock =
+                '<p class="documentation-card-desc">' + escapeHtml(doc.description) + '</p>';
+        }
+
+        let actionsInner = hasUrl
             ? '<a class="btn-doc" href="' +
               escapeHtml(rawUrl) +
               '" target="_blank" rel="noopener noreferrer"><i class="fas fa-download" aria-hidden="true"></i> Download</a>'
-            : '<span class="documentation-soon">' +
-              escapeHtml(emptyMessage) +
-              '</span>';
+            : '<span class="documentation-soon">' + escapeHtml(emptyMessage) + '</span>';
         if (hasView) {
-            actions +=
-                ' <a class="documentation-view-link" href="' +
+            actionsInner +=
+                '<a class="btn-doc btn-doc-outline" href="' +
                 escapeHtml(viewRaw) +
-                '" target="_blank" rel="noopener noreferrer">View in Drive</a>';
+                '" target="_blank" rel="noopener noreferrer"><i class="fab fa-google-drive" aria-hidden="true"></i> View in Drive</a>';
         }
+
         card.innerHTML =
-            '<h3>' +
+            '<div class="documentation-card-inner">' +
+            '<div class="documentation-card-icon" aria-hidden="true"><i class="fas ' +
+            icon +
+            '"></i></div>' +
+            '<div class="documentation-card-body">' +
+            '<h3 class="documentation-card-title">' +
             escapeHtml(title) +
-            '</h3><p>' +
-            escapeHtml(doc.description || '') +
-            '</p>' +
-            actions;
+            '</h3>' +
+            metaBlock +
+            '<div class="documentation-card-actions">' +
+            actionsInner +
+            '</div></div></div>';
         list.appendChild(card);
     });
     return rendered;

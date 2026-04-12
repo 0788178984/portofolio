@@ -697,19 +697,17 @@
             <div class="container">
                 <div class="section-header">
                     <h2 class="section-title">Client <span class="highlight">Documentation</span></h2>
-                    <p class="section-subtitle">Guides clients can download. Optionally sync automatically from a Google Drive folder using the free Apps Script in <code class="inline-code">docs/google-apps-script/Code.gs</code>, or list files manually below.</p>
+                    <p class="section-subtitle">Guides and resources you can download anytime. New files appear here as they are shared with you.</p>
                 </div>
-                <p class="documentation-hint">
-                    <i class="fab fa-google-drive" aria-hidden="true"></i>
-                    <strong>Automatic:</strong> deploy the script, set <code class="inline-code">driveFeedUrl</code> in <code class="inline-code">docs/documents.json</code> to your web app URL—new uploads in that folder appear after a refresh.
-                    <strong>Manual:</strong> share each file and use
-                    <code class="inline-code">https://drive.google.com/uc?export=download&amp;id=FILE_ID</code>
-                </p>
+                <details class="documentation-owner-note">
+                    <summary>Site owner · sync from Google Drive</summary>
+                    <p>Connect a folder with the Apps Script in <code class="inline-code">docs/google-apps-script/Code.gs</code> and set <code class="inline-code">driveFeedUrl</code> in <code class="inline-code">docs/documents.json</code>. Use a direct download link format for manual entries.</p>
+                </details>
                 <div id="documentation-list" class="documentation-grid" role="list">
                     <!-- Filled by script.js from docs/documents.json -->
                 </div>
                 <p id="documentation-fallback" class="documentation-fallback" hidden>
-                    Set <code class="inline-code">driveFeedUrl</code> to your deployed Apps Script URL, or add manual entries in <code class="inline-code">docs/documents.json</code>.
+                    No downloads are listed yet. Check back soon or contact us if you expected a file here.
                 </p>
             </div>
         </section>
