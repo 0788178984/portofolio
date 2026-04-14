@@ -198,15 +198,17 @@ body.light-mode .navbar.scrolled {
 .nav-list {
     display: flex;
     list-style: none;
-    gap: var(--spacing-md);
+    gap: 0.45rem;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--text-light);
     font-weight: 500;
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: 25px;
+    font-size: 0.92rem;
+    white-space: nowrap;
+    padding: 0.42rem 0.62rem;
+    border-radius: 999px;
     transition: all var(--transition-fast);
     position: relative;
 }
@@ -214,7 +216,8 @@ body.light-mode .navbar.scrolled {
 .nav-link:hover,
 .nav-link.active {
     color: var(--secondary-color);
-    background: var(--glass-bg);
+    background: rgba(255, 215, 0, 0.12);
+    box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.28) inset;
 }
 
 .nav-link::after {
@@ -230,7 +233,8 @@ body.light-mode .navbar.scrolled {
 }
 
 .nav-link.active::after {
-    width: 80%;
+    width: 62%;
+    box-shadow: 0 0 8px rgba(255, 215, 0, 0.45);
 }
 
 .theme-toggle-btn {
@@ -282,6 +286,7 @@ body.light-mode .navbar.scrolled {
 /* Hero Section */
 .hero {
     min-height: 100vh;
+    padding-top: calc(70px + var(--spacing-md));
     display: flex;
     align-items: center;
     position: relative;
@@ -494,6 +499,9 @@ body.light-mode .navbar.scrolled {
 /* Section Styles */
 section {
     padding: var(--spacing-xl) 0;
+    scroll-margin-top: 88px;
+    position: relative;
+    z-index: 1;
 }
 
 .section-header {
@@ -1929,13 +1937,17 @@ body:hover .custom-cursor {
 }
 
 @media (max-width: 1200px) {
+    .logo-text {
+        font-size: 1.3rem;
+    }
+
     .nav-list {
-        gap: 0.35rem;
+        gap: 0.2rem;
     }
 
     .nav-link {
-        font-size: 0.88rem;
-        padding: 0.35rem 0.55rem;
+        font-size: 0.84rem;
+        padding: 0.32rem 0.46rem;
     }
 }
 

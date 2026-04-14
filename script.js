@@ -126,22 +126,23 @@ function toggleMobileMenu() {
 
 // Active Navigation Link
 function updateActiveNavLink() {
-    const sections = document.querySelectorAll('section');
-    const scrollY = window.pageYOffset;
-    
-    sections.forEach(section => {
-        const sectionHeight = section.offsetHeight;
-        const sectionTop = section.offsetTop - 100;
-        const sectionId = section.getAttribute('id');
-        
-        if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-            navLinks.forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('data-section') === sectionId) {
-                    link.classList.add('active');
-                }
-            });
+    const sections = Array.from(document.querySelectorAll('section[id]'));
+    const viewportAnchor = window.scrollY + (navbar ? navbar.offsetHeight + 24 : 94);
+    let closestSectionId = null;
+    let smallestDistance = Number.POSITIVE_INFINITY;
+
+    sections.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        const distance = Math.abs(sectionTop - viewportAnchor);
+        if (distance < smallestDistance) {
+            smallestDistance = distance;
+            closestSectionId = section.id;
         }
+    });
+
+    navLinks.forEach((link) => {
+        const isActive = link.getAttribute('data-section') === closestSectionId;
+        link.classList.toggle('active', isActive);
     });
 }
 
@@ -334,7 +335,8 @@ function handleContactForm(e) {
 function smoothScrollTo(target) {
     const element = document.querySelector(target);
     if (element) {
-        const offsetTop = element.offsetTop - 70;
+        const navOffset = navbar ? navbar.offsetHeight + 12 : 82;
+        const offsetTop = element.offsetTop - navOffset;
         window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
@@ -879,8 +881,12 @@ window.addEventListener('scroll', () => {
     const heroContent = document.querySelector('.hero-content');
     
     if (hero && heroContent) {
-        heroContent.style.transform = `translateY(${scrolled * 0.5}px)`;
-        heroContent.style.opacity = 1 - scrolled / 800;
+        const heroLimit = hero.offsetHeight;
+        if (window.innerWidth > 992 && scrolled <= heroLimit) {
+            heroContent.style.transform = `translateY(${scrolled * 0.08}px)`;
+        } else {
+            heroContent.style.transform = '';
+        }
     }
 });
 
