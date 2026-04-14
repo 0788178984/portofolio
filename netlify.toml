@@ -4,3 +4,18 @@
 
 [build]
   publish = "."
+
+[[redirects]]
+  from = "/school-website-uganda"
+  to = "/school-website-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/clinic-website-uganda"
+  to = "/clinic-website-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/sacco-digital-services-uganda"
+  to = "/sacco-digital-services-uganda.html"
+  status = 200
