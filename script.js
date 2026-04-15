@@ -803,8 +803,12 @@ backToTopBtn.addEventListener('click', () => {
 // Navigation links smooth scroll
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
         const target = link.getAttribute('href');
+        if (!target || !target.startsWith('#')) {
+            return;
+        }
+
+        e.preventDefault();
         smoothScrollTo(target);
         
         // Close mobile menu if open

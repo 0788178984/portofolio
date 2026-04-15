@@ -19,3 +19,18 @@
   from = "/sacco-digital-services-uganda"
   to = "/sacco-digital-services-uganda.html"
   status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/google-ads-youtube-ads-uganda"
+  to = "/blog/google-ads-youtube-ads-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/school-website-marketing-uganda"
+  to = "/blog/school-website-marketing-uganda.html"
+  status = 200
