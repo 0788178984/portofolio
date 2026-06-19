@@ -8,5 +8,6 @@ window.ASMART_CONFIG = {
   WHATSAPP: '256779654710',
   EMAIL: 'asiimwelucky34@gmail.com',
   SITE_NAME: 'Asmart Tech Platform',
-  TAGLINE: 'Your Self-Running Tech Business Hub in Uganda',
+  TAGLINE: 'Tech Services Across All Uganda',
+  SERVICE_AREAS: 'Kampala, Entebbe, Jinja, Mbarara, Gulu, Fort Portal, Hoima, Masaka, Mbale, Kagadi & all Uganda',
 };

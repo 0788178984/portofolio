@@ -22,7 +22,7 @@ window.ASMART_SERVICES = {
       id: 'tech-support',
       name: 'Tech Support & Installation',
       icon: 'fa-tools',
-      description: 'Repairs, CCTV, WiFi, software, and data recovery — on-site in Kagadi and remote across Uganda.',
+      description: 'Repairs, CCTV, WiFi, software, and data recovery — on-site and remote across all Uganda.',
     },
   ],
   items: [
@@ -207,8 +207,8 @@ window.ASMART_SERVICES = {
       icon: 'fa-print',
       description: 'Print documents, IDs, forms, and photos for walk-in and remote clients.',
       features: ['Document printing', 'Photocopying', 'ID photos', 'Binding & lamination'],
-      slug: 'cv-typing-services-uganda',
-      keywords: ['printing services Kagadi', 'photocopy Uganda'],
+      slug: 'printing-services-uganda',
+      keywords: ['printing services Uganda', 'photocopy Uganda', 'print shop Kampala'],
     },
     {
       id: 'training',
@@ -237,8 +237,8 @@ window.ASMART_SERVICES = {
       icon: 'fa-mobile',
       description: 'Screen replacements, battery swaps, and software flashing for Android phones.',
       features: ['Screen repair', 'Software flashing', 'Battery replacement', 'Data backup'],
-      slug: 'computer-repair-kagadi',
-      keywords: ['phone repair Kagadi', 'mobile repair Uganda'],
+      slug: 'computer-phone-repair-uganda',
+      keywords: ['phone repair Uganda', 'computer repair Uganda', 'mobile repair Kampala'],
     },
     {
       id: 'networking',
@@ -297,9 +297,15 @@ window.ASMART_SERVICES = {
       icon: 'fa-user-cog',
     },
     {
-      title: 'Computer & Phone Repair Kagadi',
-      slug: 'computer-repair-kagadi',
-      description: 'Screen repair, software flashing, and hardware fixes for phones and laptops.',
+      title: 'Printing Services Uganda',
+      slug: 'printing-services-uganda',
+      description: 'Printing, photocopying, IDs and document services nationwide.',
+      icon: 'fa-print',
+    },
+    {
+      title: 'Phone & Computer Repair Uganda',
+      slug: 'computer-phone-repair-uganda',
+      description: 'Screen repair, software flashing, and hardware fixes nationwide.',
       icon: 'fa-tools',
     },
     {
@@ -335,7 +341,7 @@ window.ASMART_SERVICES = {
     {
       title: 'SEO for Small Business Uganda',
       slug: 'seo-small-business-uganda',
-      description: 'Rank on Google in Kampala, Kagadi, and across Uganda.',
+      description: 'Rank on Google in Kampala, upcountry towns, and across Uganda.',
       icon: 'fa-search',
     },
     {

@@ -88,6 +88,21 @@
   status = 200
 
 [[redirects]]
+  from = "/computer-phone-repair-uganda"
+  to = "/computer-phone-repair-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/computer-repair-kagadi"
+  to = "/computer-phone-repair-uganda.html"
+  status = 301
+
+[[redirects]]
+  from = "/printing-services-uganda"
+  to = "/printing-services-uganda.html"
+  status = 200
+
+[[redirects]]
   from = "/supermarket-software-uganda"
   to = "/supermarket-software-uganda.html"
   status = 200
