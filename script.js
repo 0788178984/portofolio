@@ -21,11 +21,14 @@ const nextBtn = document.querySelector('.next-btn');
 
 // Typed Animation
 const typedTexts = [
-    'Web Designer',
-    'Mobile App Developer',
-    'Graphics Designer',
-    'Digital Solutions Expert',
-    'Founder of Asmart'
+    'Web Design & Development',
+    'Mobile App Development',
+    'CCTV Installation',
+    'Phone & Computer Repair',
+    'CV Typing & Documents',
+    'Social Media Management',
+    'WiFi & Network Setup',
+    'Tech Consulting Uganda'
 ];
 
 let textIndex = 0;
@@ -34,6 +37,7 @@ let isDeleting = false;
 let typingSpeed = 100;
 
 function typeText() {
+    if (!typedTextElement) return;
     const currentText = typedTexts[textIndex];
     
     if (isDeleting) {
@@ -294,8 +298,8 @@ function prevTestimonial() {
     showTestimonial(currentTestimonial);
 }
 
-// Contact Form
-function handleContactForm(e) {
+// Contact form handled by js/platform-forms.js when loaded; mailto fallback below
+function handleContactFormMailto(e) {
     e.preventDefault();
     
     const formData = new FormData(contactForm);
@@ -771,32 +775,32 @@ function initPortfolioPlaceholders() {
 
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    // Start animations
-    typeText();
-    createParticles();
+    if (typedTextElement) typeText();
+    if (document.getElementById('particles')) createParticles();
     hidePreloader();
-    loadSavedTheme();
-    animateCounters();
-    animateSkillBars();
+    if (themeToggle) loadSavedTheme();
+    if (statNumbers.length) animateCounters();
+    if (skillBars.length) animateSkillBars();
     initScrollAnimations();
-    loadClientDocuments();
+    if (document.getElementById('documentation-grid')) loadClientDocuments();
     initAiHelpPanel();
     initPortfolioPlaceholders();
     
-    // Initialize custom cursor only on desktop
-    if (window.innerWidth > 768) {
+    if (window.innerWidth > 768 && document.querySelector('.custom-cursor')) {
         initCustomCursor();
     }
     
-    // Auto-rotate testimonials
-    setInterval(nextTestimonial, 5000);
+    if (testimonialCards.length > 1) {
+        setInterval(nextTestimonial, 5000);
+    }
 });
 
-// Event Listeners
-hamburger.addEventListener('click', toggleMobileMenu);
-themeToggle.addEventListener('click', toggleTheme);
-contactForm.addEventListener('submit', handleContactForm);
-backToTopBtn.addEventListener('click', () => {
+if (hamburger) hamburger.addEventListener('click', toggleMobileMenu);
+if (themeToggle) themeToggle.addEventListener('click', toggleTheme);
+if (contactForm && !window.AsmartAPI) {
+    contactForm.addEventListener('submit', handleContactFormMailto);
+}
+if (backToTopBtn) backToTopBtn.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
@@ -827,8 +831,8 @@ filterBtns.forEach(btn => {
 });
 
 // Testimonial controls
-prevBtn.addEventListener('click', prevTestimonial);
-nextBtn.addEventListener('click', nextTestimonial);
+if (prevBtn) prevBtn.addEventListener('click', prevTestimonial);
+if (nextBtn) nextBtn.addEventListener('click', nextTestimonial);
 
 // Scroll event listeners
 window.addEventListener('scroll', () => {
@@ -942,7 +946,7 @@ let touchStartX = 0;
 let touchEndX = 0;
 
 const testimonialsSlider = document.querySelector('.testimonials-slider');
-
+if (testimonialsSlider) {
 testimonialsSlider.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
 });
@@ -954,14 +958,13 @@ testimonialsSlider.addEventListener('touchend', (e) => {
 
 function handleSwipe() {
     if (touchEndX < touchStartX - 50) {
-        nextTestimonial(); // Swipe left
+        nextTestimonial();
     }
     if (touchEndX > touchStartX + 50) {
-        prevTestimonial(); // Swipe right
+        prevTestimonial();
     }
 }
+}
 
-// Console Easter egg
-console.log('%c🚀 Welcome to Asiimwe Lucky\'s Portfolio!', 'color: #FFD700; font-size: 20px; font-weight: bold;');
-console.log('%cBuilt with passion in Kagadi, Uganda 🇺🇬', 'color: #0A0E27; font-size: 14px;');
-console.log('%cCheck out my work and let\'s build something amazing together!', 'color: #FFA500; font-size: 12px;');
+console.log('%c🚀 Asmart Tech Platform', 'color: #FFD700; font-size: 20px; font-weight: bold;');
+console.log('%cSelf-running tech business hub — Kagadi, Uganda 🇺🇬', 'color: #0A0E27; font-size: 14px;');

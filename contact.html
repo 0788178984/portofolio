@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Asmart | Tech Platform Uganda</title>
+    <meta name="description" content="Contact Asmart Tech Platform in Kagadi, Uganda. Send a message, request a quote, or chat on WhatsApp for web design, apps, repairs, and all tech services.">
+    <link rel="canonical" href="https://asmartdev.netlify.app/contact">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico.png">
+</head>
+<body class="platform-page">
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link"><span class="logo-text">Asmart<span class="logo-accent">.tech</span></span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link" data-page="services">Services</a></li>
+                    <li class="nav-item"><a href="guides.html" class="nav-link" data-page="guides">Search Guides</a></li>
+                    <li class="nav-item"><a href="request.html" class="nav-link" data-page="request">Request</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link" data-page="blog">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link active" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="page-hero page-hero-compact">
+            <div class="container">
+                <h1 class="page-hero-title">Contact <span class="highlight">Asmart</span></h1>
+                <p class="page-hero-desc">Send a message directly through our platform — we respond within 24 hours. Or reach us instantly on WhatsApp.</p>
+            </div>
+        </section>
+
+        <section class="contact platform-contact">
+            <div class="container">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3 class="contact-title">Get In Touch</h3>
+                        <p class="contact-description">Whether you need a website, app, CCTV installation, phone repair, or any tech service — we're here to help businesses and individuals across Uganda.</p>
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                                <div class="contact-text"><h4>Location</h4><p>Kagadi, Western Uganda</p></div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                                <div class="contact-text"><h4>Email</h4><p><a href="mailto:asiimwelucky34@gmail.com">asiimwelucky34@gmail.com</a></p></div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fab fa-whatsapp"></i></div>
+                                <div class="contact-text"><h4>WhatsApp</h4><p><a href="https://wa.me/256779654710" target="_blank">+256 779 654 710</a></p></div>
+                            </div>
+                            <div class="contact-item">
+                                <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                                <div class="contact-text"><h4>Response Time</h4><p>Within 24 hours (WhatsApp: instant)</p></div>
+                            </div>
+                        </div>
+                        <div class="api-status" id="api-status"><span class="status-dot"></span> Checking connection...</div>
+                    </div>
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Your Name *</label>
+                                    <input type="text" id="name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Your Email *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone / WhatsApp</label>
+                                <input type="tel" id="phone" name="phone" placeholder="+256...">
+                            </div>
+                            <div class="form-group">
+                                <label for="service">Service (optional)</label>
+                                <input type="text" id="service" name="service" placeholder="e.g. Website design, CCTV, CV typing">
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject *</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message *</label>
+                                <textarea id="message" name="message" rows="5" required placeholder="Tell us about your project or need..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <div id="form-message" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 <strong>Asmart Uganda</strong> | <a href="index.html">Back to Home</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/256779654710" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <script src="js/config.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/platform-forms.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', async () => {
+        const el = document.getElementById('api-status');
+        if (!el) return;
+        try {
+          const ok = await AsmartAPI.checkHealth();
+          el.innerHTML = ok
+            ? '<span class="status-dot online"></span> Platform connected — messages deliver instantly'
+            : '<span class="status-dot offline"></span> Offline mode — WhatsApp fallback available';
+        } catch {
+          el.innerHTML = '<span class="status-dot offline"></span> Offline mode — WhatsApp fallback available';
+        }
+      });
+    </script>
+</body>
+</html>

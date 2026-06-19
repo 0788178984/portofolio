@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Guides — Find Tech Services in Uganda | Asmart</title>
+    <meta name="description" content="Search guides for web designer Uganda, app developer, CCTV installation, phone repair, CV typing, WiFi setup, SEO, and more. Asmart Tech Platform Kagadi.">
+    <meta name="keywords" content="web designer Uganda, app developer Uganda, CCTV Kagadi, phone repair, CV typing, WiFi setup Uganda, SEO Uganda">
+    <link rel="canonical" href="https://asmartdev.netlify.app/guides">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico.png">
+</head>
+<body class="platform-page">
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link"><span class="logo-text">Asmart<span class="logo-accent">.tech</span></span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link" data-page="services">Services</a></li>
+                    <li class="nav-item"><a href="guides.html" class="nav-link active" data-page="guides">Search Guides</a></li>
+                    <li class="nav-item"><a href="request.html" class="nav-link" data-page="request">Request</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link" data-page="blog">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="page-hero">
+            <div class="container">
+                <p class="page-hero-label"><i class="fas fa-search"></i> SEO Search Guides</p>
+                <h1 class="page-hero-title">Find the Right <span class="highlight">Tech Service</span> in Uganda</h1>
+                <p class="page-hero-desc">These guides help you find exactly what you're searching for — web design, apps, repairs, CCTV, typing, and more. Every service is available through Asmart Tech Platform with pricing on negotiation.</p>
+                <div class="search-bar-wrap">
+                    <input type="search" id="guide-search" class="guide-search-input" placeholder="Search: web designer, CCTV, CV typing, phone repair..." aria-label="Filter search guides">
+                    <i class="fas fa-search guide-search-icon"></i>
+                </div>
+            </div>
+        </section>
+
+        <section class="seo-hub guides-section">
+            <div class="container">
+                <div class="seo-grid" id="search-guides-grid"></div>
+            </div>
+        </section>
+
+        <section class="lead-magnet container" style="margin-bottom:4rem;">
+            <h3>Free Website Growth Checklist</h3>
+            <p>Message us on WhatsApp with the word <strong>CHECKLIST</strong> for a free PDF guide and mini website audit.</p>
+            <div class="hero-buttons" style="justify-content:center;">
+                <a href="https://wa.me/256779654710?text=CHECKLIST%20-%20Please%20send%20me%20the%20free%20website%20growth%20checklist." target="_blank" rel="noopener noreferrer" class="btn btn-primary">Get Free Checklist</a>
+                <a href="blog.html" class="btn btn-secondary">Visit Blog</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 <strong>Asmart Uganda</strong> | <a href="index.html">Home</a> · <a href="services.html">All Services</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/256779654710" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <script src="js/config.js"></script>
+    <script src="js/services-data.js"></script>
+    <script src="js/platform-forms.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script src="script.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const input = document.getElementById('guide-search');
+        const grid = document.getElementById('search-guides-grid');
+        if (!input || !grid) return;
+        input.addEventListener('input', () => {
+          const q = input.value.toLowerCase().trim();
+          grid.querySelectorAll('.search-guide-card').forEach((card) => {
+            const text = card.textContent.toLowerCase();
+            card.style.display = !q || text.includes(q) ? '' : 'none';
+          });
+        });
+      });
+    </script>
+</body>
+</html>

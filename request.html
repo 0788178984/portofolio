@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request a Service | Asmart Tech Platform Uganda</title>
+    <meta name="description" content="Submit a service request to Asmart Tech Platform. Web design, apps, CCTV, repairs, typing, social media — price on negotiation.">
+    <link rel="canonical" href="https://asmartdev.netlify.app/request">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="Assets/favicon.ico.png">
+</head>
+<body class="platform-page">
+    <header class="navbar">
+        <nav class="nav-container">
+            <div class="nav-logo">
+                <a href="index.html" class="logo-link"><span class="logo-text">Asmart<span class="logo-accent">.tech</span></span></a>
+            </div>
+            <div class="nav-menu" id="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                    <li class="nav-item"><a href="services.html" class="nav-link" data-page="services">Services</a></li>
+                    <li class="nav-item"><a href="guides.html" class="nav-link" data-page="guides">Search Guides</a></li>
+                    <li class="nav-item"><a href="request.html" class="nav-link active" data-page="request">Request</a></li>
+                    <li class="nav-item"><a href="blog.html" class="nav-link" data-page="blog">Blog</a></li>
+                    <li class="nav-item"><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+                </ul>
+                <div class="nav-toggle">
+                    <button id="theme-toggle" class="theme-toggle-btn"><i class="fas fa-moon"></i></button>
+                </div>
+            </div>
+            <div class="hamburger" id="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </nav>
+    </header>
+
+    <main class="page-main">
+        <section class="page-hero page-hero-compact">
+            <div class="container">
+                <h1 class="page-hero-title">Request a <span class="highlight">Service</span></h1>
+                <p class="page-hero-desc">Tell us what you need. We'll contact you to discuss scope and pricing — everything is <strong>on negotiation</strong>.</p>
+            </div>
+        </section>
+
+        <section class="request-section">
+            <div class="container">
+                <div class="request-layout">
+                    <div class="request-info">
+                        <h2>How it works</h2>
+                        <ol class="request-steps">
+                            <li><strong>Submit</strong> — Fill the form with your service and details</li>
+                            <li><strong>Review</strong> — We review your request within 24 hours</li>
+                            <li><strong>Quote</strong> — We send a custom quote on negotiation</li>
+                            <li><strong>Deliver</strong> — Work begins once you approve</li>
+                        </ol>
+                        <div class="negotiation-badge">
+                            <i class="fas fa-handshake"></i>
+                            <div>
+                                <strong>Flexible Pricing</strong>
+                                <p>Every project is unique. No fixed prices — we quote based on your needs and budget.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form-container">
+                        <form id="service-request-form" class="contact-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="req-name">Your Name *</label>
+                                    <input type="text" id="req-name" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="req-email">Email *</label>
+                                    <input type="email" id="req-email" name="email" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="req-phone">Phone / WhatsApp *</label>
+                                    <input type="tel" id="req-phone" name="phone" required placeholder="+256...">
+                                </div>
+                                <div class="form-group">
+                                    <label for="req-location">Location</label>
+                                    <input type="text" id="req-location" name="location" placeholder="Kagadi, Kampala, etc.">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-select">Service Needed *</label>
+                                <select id="service-select" name="serviceId" required></select>
+                            </div>
+                            <div class="form-group">
+                                <label for="req-urgency">Urgency</label>
+                                <select id="req-urgency" name="urgency">
+                                    <option value="normal">Normal (within a week)</option>
+                                    <option value="urgent">Urgent (1-2 days)</option>
+                                    <option value="flexible">Flexible (no rush)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="req-description">Describe Your Need *</label>
+                                <textarea id="req-description" name="description" rows="6" required placeholder="What do you need done? Include any details that help us quote accurately..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="btn-text">Submit Request</span>
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                        <div id="request-message" class="form-message"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p class="footer-copyright">© 2026 <strong>Asmart Uganda</strong> | <a href="services.html">Browse all services</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/256779654710" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+    <script src="js/config.js"></script>
+    <script src="js/services-data.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/platform-forms.js"></script>
+    <script src="js/shared-ui.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
