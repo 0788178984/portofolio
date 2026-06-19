@@ -2081,9 +2081,9 @@ body:hover .custom-cursor {
     }
     
     .floating-icon {
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
+        width: 36px;
+        height: 36px;
+        font-size: 0.95rem;
     }
     
     .service-card,
@@ -2555,8 +2555,22 @@ section, main, .container, .hero, .page-main {
     }
 
     .floating-icons {
-        display: none;
+        overflow: hidden;
     }
+
+    .floating-icon {
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+        border-radius: 12px;
+        opacity: 0.85;
+    }
+
+    .floating-icon:nth-child(1) { top: 18%; left: 4%; }
+    .floating-icon:nth-child(2) { top: 28%; right: 4%; left: auto; }
+    .floating-icon:nth-child(3) { bottom: 28%; left: 6%; top: auto; }
+    .floating-icon:nth-child(4) { bottom: 18%; right: 6%; top: auto; left: auto; }
+    .floating-icon:nth-child(5) { top: 48%; left: 50%; transform: translateX(-50%); }
 
     .portfolio-grid,
     .services-grid,
