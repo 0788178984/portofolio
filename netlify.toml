@@ -88,6 +88,11 @@
   status = 200
 
 [[redirects]]
+  from = "/supermarket-software-uganda"
+  to = "/supermarket-software-uganda.html"
+  status = 200
+
+[[redirects]]
   from = "/school-website-uganda"
   to = "/school-website-uganda.html"
   status = 200

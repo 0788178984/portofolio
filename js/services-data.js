@@ -27,6 +27,20 @@ window.ASMART_SERVICES = {
   ],
   items: [
     {
+      id: 'supermarket-software',
+      category: 'digital',
+      name: 'SuperMKT — Supermarket Management System',
+      icon: 'fa-shopping-cart',
+      description: 'Uganda\'s supermarket POS, inventory, MoMo/Airtel payments, VAT tracking & live sales dashboards. From UGX 80K/month.',
+      features: ['POS & inventory', 'MTN MoMo & Airtel Money', '18% VAT tracking', 'Offline-ready', 'Live sales dashboard'],
+      slug: 'supermarket-software-uganda',
+      keywords: ['supermarket software Uganda', 'POS system Uganda', 'SuperMKT'],
+      links: {
+        app: 'https://supermkt-n1nf.onrender.com/login',
+        sales: 'https://sales-i9to.onrender.com',
+      },
+    },
+    {
       id: 'web-design',
       category: 'digital',
       name: 'Web Design & Development',
@@ -258,6 +272,12 @@ window.ASMART_SERVICES = {
     },
   ],
   searchGuides: [
+    {
+      title: 'Supermarket Software Uganda',
+      slug: 'supermarket-software-uganda',
+      description: 'SuperMKT — POS, inventory, MoMo payments & sales tracking for Ugandan supermarkets.',
+      icon: 'fa-shopping-cart',
+    },
     {
       title: 'Web Designer in Uganda',
       slug: 'web-designer-uganda',

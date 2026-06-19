@@ -132,6 +132,13 @@
       items.forEach((s) => {
         const card = document.createElement('article');
         card.className = 'service-card platform-service-card';
+        const links = s.links || {};
+        const extraLinks = links.sales
+          ? `<a href="${links.sales}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer"><i class="fas fa-globe"></i> Sales site</a>`
+          : '';
+        const appLink = links.app
+          ? `<a href="${links.app}" class="btn btn-secondary btn-sm" target="_blank" rel="noopener noreferrer"><i class="fas fa-external-link-alt"></i> Open app</a>`
+          : '';
         card.innerHTML = `
           <div class="service-icon"><i class="fas ${s.icon}"></i></div>
           <h3 class="service-title">${s.name}</h3>
@@ -142,6 +149,8 @@
           <div class="service-pricing-badge"><i class="fas fa-handshake"></i> Price on negotiation</div>
           <div class="service-card-actions">
             <a href="request.html?service=${s.id}" class="btn btn-primary btn-sm">Request Service</a>
+            ${appLink}
+            ${extraLinks}
             <a href="https://wa.me/${ASMART_CONFIG.WHATSAPP}?text=${encodeURIComponent(`Hi Asmart, I need ${s.name}.`)}"
                target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
               <i class="fab fa-whatsapp"></i> WhatsApp

@@ -2433,3 +2433,62 @@ body.light-mode select { background: #fff; color: var(--text-dark); }
     .request-layout { grid-template-columns: 1fr; }
     .platform-categories-preview { flex-direction: column; align-items: center; }
 }
+
+/* Product portfolio cards (SuperMKT etc.) */
+.portfolio-image-product {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #0A0E27 0%, #1a2340 50%, #0d2818 100%);
+}
+
+.portfolio-image-product.supermkt-sales {
+    background: linear-gradient(135deg, #0A0E27 0%, #1a3a1a 40%, #0A0E27 100%);
+}
+
+.portfolio-image-product.supermkt-app {
+    background: linear-gradient(135deg, #1a1f3a 0%, #0A0E27 50%, #2a2000 100%);
+}
+
+.product-thumb {
+    text-align: center;
+    color: var(--secondary-color);
+    z-index: 1;
+}
+
+.product-thumb i {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 0.75rem;
+    filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.4));
+}
+
+.product-thumb span {
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.portfolio-card-featured {
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    box-shadow: 0 0 24px rgba(255, 215, 0, 0.08);
+}
+
+.portfolio-card-featured::before {
+    content: 'Live Product';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    z-index: 2;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding: 0.25rem 0.6rem;
+    background: var(--secondary-color);
+    color: var(--primary-color);
+    border-radius: 4px;
+}
+
+.portfolio-card { position: relative; }

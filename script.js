@@ -112,14 +112,9 @@ function initCustomCursor() {
     });
 }
 
-// Preloader
+// Preloader removed — site opens directly
 function hidePreloader() {
-    setTimeout(() => {
-        preloader.classList.add('fade-out');
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 500);
-    }, 2000);
+    if (preloader) preloader.style.display = 'none';
 }
 
 // Mobile Navigation
@@ -152,6 +147,7 @@ function updateActiveNavLink() {
 
 // Scroll Progress Bar
 function updateScrollProgress() {
+    if (!scrollProgress) return;
     const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.pageYOffset;
     const progress = (scrollPosition / scrollHeight) * 100;
@@ -253,8 +249,9 @@ function animateSkillBars() {
 // Portfolio Filter
 function filterPortfolio(category) {
     portfolioItems.forEach(item => {
-        const itemCategory = item.getAttribute('data-category');
-        if (category === 'all' || itemCategory === category) {
+        const itemCategory = item.getAttribute('data-category') || '';
+        const categories = itemCategory.split(/\s+/);
+        if (category === 'all' || categories.includes(category)) {
             item.classList.remove('hidden');
             item.style.display = 'block';
         } else {
