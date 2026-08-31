@@ -712,10 +712,10 @@ function renderDocumentationGrouped(rootEl, groups, emptyMessage) {
             return;
         }
         
-        const folderSection = document.createElement('section');
+        const folderSection = document.createElement('div');
         folderSection.className = 'documentation-folder';
+        folderSection.setAttribute('role', 'region');
         folderSection.setAttribute('aria-label', group.title || 'Downloads');
-        folderSection.style.display = 'block';
         
         if (group.title) {
             const heading = document.createElement('h3');

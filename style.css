@@ -389,8 +389,8 @@ input:focus, textarea:focus, select:focus {
     }
 }
 
-/* Documents-only mode */
-body.documents-only-mode section:not(#documentation) {
+/* Documents-only mode — hide other page sections, not nested <section> folders inside docs */
+body.documents-only-mode main > section:not(#documentation) {
     display: none !important;
 }
 
@@ -419,37 +419,19 @@ body.documents-only-mode .visitor-choice {
     display: none !important;
 }
 
-body.documents-only-mode .documentation-status {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-body.documents-only-mode .documentation-root {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-body.documents-only-mode .documentation-fallback {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-body.documents-only-mode .documentation-list {
-    display: block !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
+body.documents-only-mode .documentation-root,
+body.documents-only-mode .documentation-folder,
+body.documents-only-mode .documentation-grid,
 body.documents-only-mode .documentation-card {
-    display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-body.documents-only-mode .container {
+body.documents-only-mode .documentation-fallback[hidden] {
+    display: none !important;
+}
+
+body.documents-only-mode #documentation > .container {
     display: block !important;
     opacity: 1 !important;
     visibility: visible !important;
