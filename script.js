@@ -666,12 +666,21 @@ function loadClientDocuments() {
     const fallback = document.getElementById('documentation-fallback');
     const status = document.getElementById('documentation-status');
     const toolbar = document.getElementById('documentation-toolbar');
-    if (!list || !fallback) return;
+    
+    console.log('loadClientDocuments called');
+    console.log('Documentation list element:', list);
+    console.log('Documentation fallback element:', fallback);
+    
+    if (!list || !fallback) {
+        console.error('Missing required elements for document loading');
+        return;
+    }
 
     // Show loading state
     if (status) {
         status.textContent = 'Loading documents...';
         status.className = 'documentation-status';
+        status.style.display = 'block';
     }
 
     const manualHint =
@@ -679,9 +688,14 @@ function loadClientDocuments() {
     const driveHint =
         'Missing download URL for this file. Check sharing on the file or the Apps Script folder.';
 
+    console.log('Fetching documents configuration...');
     fetch('docs/documents.json')
-        .then((res) => (res.ok ? res.json() : Promise.reject(new Error('bad response'))))
+        .then((res) => {
+            console.log('Config fetch response:', res);
+            return res.ok ? res.json() : Promise.reject(new Error('bad response'));
+        })
         .then((config) => {
+            console.log('Config loaded:', config);
             const feedUrl =
                 config.driveFeedUrl != null && String(config.driveFeedUrl).trim()
                     ? String(config.driveFeedUrl).trim()
@@ -689,65 +703,115 @@ function loadClientDocuments() {
             const staticDocs = Array.isArray(config.documents) ? config.documents : [];
 
             const showFallback = () => {
-                if (status) status.textContent = '';
+                console.log('Showing fallback');
+                if (status) {
+                    status.textContent = '';
+                    status.style.display = 'none';
+                }
                 fallback.hidden = false;
+                fallback.style.display = 'block';
                 if (toolbar) toolbar.hidden = true;
             };
 
             const applyStatic = () => {
+                console.log('Applying static documents:', staticDocs);
                 const rendered = renderDocumentationGrouped(
                     list,
                     [{ title: null, items: staticDocs }],
                     manualHint
                 );
+                console.log('Rendered', rendered, 'documents');
                 if (rendered === 0) {
                     showFallback();
-                    if (status) status.textContent = 'No documents available yet.';
+                    if (status) {
+                        status.textContent = 'No documents available yet.';
+                        status.style.display = 'block';
+                    }
                 } else {
                     fallback.hidden = true;
+                    fallback.style.display = 'none';
                     if (toolbar) toolbar.hidden = false;
-                    if (status) status.textContent = `Loaded ${rendered} document(s)`;
-                    setTimeout(() => { if (status) status.textContent = ''; }, 3000);
+                    if (status) {
+                        status.textContent = `Loaded ${rendered} document(s)`;
+                        status.style.display = 'block';
+                    }
+                    setTimeout(() => { 
+                        if (status) {
+                            status.textContent = '';
+                            status.style.display = 'none';
+                        }
+                    }, 3000);
                 }
             };
 
             if (!feedUrl) {
+                console.log('No Drive feed URL, using static documents');
                 applyStatic();
                 return;
             }
 
             // Show loading state for Drive fetch
-            if (status) status.textContent = 'Loading from Google Drive...';
+            if (status) {
+                status.textContent = 'Loading from Google Drive...';
+                status.style.display = 'block';
+            }
 
+            console.log('Fetching from Drive:', feedUrl);
             fetchDriveFeed(feedUrl)
                 .then((data) => {
+                    console.log('Drive data received:', data);
                     const groups = feedDataToGroups(data);
+                    console.log('Groups created:', groups);
                     const itemCount = groups.reduce((sum, g) => sum + (g.items ? g.items.length : 0), 0);
+                    console.log('Total items:', itemCount);
                     if (itemCount > 0) {
                         const rendered = renderDocumentationGrouped(list, groups, driveHint);
+                        console.log('Rendered from Drive:', rendered);
                         if (rendered === 0) {
                             applyStatic();
                         } else {
                             fallback.hidden = true;
+                            fallback.style.display = 'none';
                             if (toolbar) toolbar.hidden = false;
-                            if (status) status.textContent = `Loaded ${rendered} document(s) from Drive`;
-                            setTimeout(() => { if (status) status.textContent = ''; }, 3000);
+                            if (status) {
+                                status.textContent = `Loaded ${rendered} document(s) from Drive`;
+                                status.style.display = 'block';
+                            }
+                            setTimeout(() => { 
+                                if (status) {
+                                    status.textContent = '';
+                                    status.style.display = 'none';
+                                }
+                            }, 3000);
                         }
                     } else {
+                        console.log('No items in Drive, using static');
                         applyStatic();
                     }
                 })
                 .catch((err) => {
                     console.error('Drive fetch error:', err);
-                    if (status) status.textContent = 'Using local documents (Drive unavailable)';
-                    setTimeout(() => { if (status) status.textContent = ''; }, 3000);
+                    if (status) {
+                        status.textContent = 'Using local documents (Drive unavailable)';
+                        status.style.display = 'block';
+                    }
+                    setTimeout(() => { 
+                        if (status) {
+                            status.textContent = '';
+                            status.style.display = 'none';
+                        }
+                    }, 3000);
                     applyStatic();
                 });
         })
         .catch((err) => {
             console.error('Config fetch error:', err);
-            if (status) status.textContent = 'Error loading documents configuration';
+            if (status) {
+                status.textContent = 'Error loading documents configuration';
+                status.style.display = 'block';
+            }
             fallback.hidden = false;
+            fallback.style.display = 'block';
         });
 }
 
@@ -834,6 +898,14 @@ function initVisitorChoice() {
         visitorChoice.classList.add('hidden');
         document.body.style.overflow = '';
         
+        // Force load documents immediately in documents-only mode
+        setTimeout(() => {
+            if (document.getElementById('documentation-list')) {
+                console.log('Loading documents in documents-only mode');
+                loadClientDocuments();
+            }
+        }, 100);
+        
         // Handle back to website button
         if (backToWebsiteBtn) {
             backToWebsiteBtn.addEventListener('click', (e) => {
@@ -872,6 +944,14 @@ function initVisitorChoice() {
             // Enable documents-only mode
             document.body.classList.add('documents-only-mode');
             document.body.style.overflow = '';
+            
+            // Force load documents immediately
+            setTimeout(() => {
+                if (document.getElementById('documentation-list')) {
+                    console.log('Loading documents after choice');
+                    loadClientDocuments();
+                }
+            }, 100);
             
             // Handle back to website button
             if (backToWebsiteBtn) {
@@ -917,9 +997,16 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Load documents with a slight delay to prioritize main content
+    // But load immediately if in documents-only mode
+    const savedChoice = localStorage.getItem('visitorChoice');
+    const delay = savedChoice === 'documents' ? 100 : 500;
+    
     setTimeout(() => {
-        if (document.getElementById('documentation-list')) loadClientDocuments();
-    }, 500);
+        if (document.getElementById('documentation-list')) {
+            console.log('Loading documents with delay:', delay);
+            loadClientDocuments();
+        }
+    }, delay);
     
     // Initialize interactive elements
     initAiHelpPanel();

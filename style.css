@@ -392,12 +392,26 @@ body.documents-only-mode .back-to-top {
 }
 
 body.documents-only-mode #documentation {
+    display: block !important;
     padding-top: 2rem;
     min-height: 100vh;
+    margin-top: 0;
 }
 
 body.documents-only-mode .visitor-choice {
     display: none !important;
+}
+
+body.documents-only-mode .documentation-status {
+    display: block !important;
+}
+
+body.documents-only-mode .documentation-root {
+    display: block !important;
+}
+
+body.documents-only-mode .documentation-fallback {
+    display: block !important;
 }
 
 /* Add a "Back to full website" button for documents-only mode */
