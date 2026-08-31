@@ -906,6 +906,17 @@ function initVisitorChoice() {
         choiceWebsite.classList.add('choice-btn-selected');
         choiceWebsite.querySelector('.choice-text h3').textContent = 'Visit Full Website (Previous Choice)';
     }
+    
+    // Pre-load documents in background if previous choice was documents
+    if (savedChoice === 'documents') {
+        console.log('Pre-loading documents in background');
+        setTimeout(() => {
+            if (document.getElementById('documentation-list')) {
+                console.log('Background document load');
+                loadClientDocuments();
+            }
+        }, 100);
+    }
 
     // Handle choice buttons
     if (choiceWebsite) {
@@ -926,13 +937,27 @@ function initVisitorChoice() {
             document.body.classList.add('documents-only-mode');
             document.body.style.overflow = '';
             
-            // Force load documents immediately
+            // Force load documents immediately with multiple attempts
+            console.log('Attempting to load documents in documents-only mode');
+            
+            // Try immediate load
+            loadClientDocuments();
+            
+            // Backup load attempts
             setTimeout(() => {
-                if (document.getElementById('documentation-list')) {
-                    console.log('Loading documents after choice');
-                    loadClientDocuments();
-                }
-            }, 100);
+                console.log('Retry 1: Loading documents');
+                loadClientDocuments();
+            }, 200);
+            
+            setTimeout(() => {
+                console.log('Retry 2: Loading documents');
+                loadClientDocuments();
+            }, 500);
+            
+            setTimeout(() => {
+                console.log('Retry 3: Loading documents');
+                loadClientDocuments();
+            }, 1000);
             
             // Handle back to website button
             if (backToWebsiteBtn) {
@@ -956,11 +981,21 @@ function initVisitorChoice() {
             
             if (finalChoice === 'documents') {
                 document.body.classList.add('documents-only-mode');
+                document.body.style.overflow = '';
+                
+                // Force load documents with multiple attempts
+                console.log('Loading documents for previous choice');
+                loadClientDocuments();
+                
                 setTimeout(() => {
-                    if (document.getElementById('documentation-list')) {
-                        loadClientDocuments();
-                    }
-                }, 100);
+                    console.log('Retry: Loading documents for previous choice');
+                    loadClientDocuments();
+                }, 200);
+                
+                setTimeout(() => {
+                    console.log('Retry 2: Loading documents for previous choice');
+                    loadClientDocuments();
+                }, 500);
             }
             
             visitorChoice.classList.add('hidden');
@@ -990,17 +1025,32 @@ document.addEventListener('DOMContentLoaded', () => {
         initScrollAnimations();
     });
     
-    // Load documents with a slight delay to prioritize main content
-    // But load immediately if in documents-only mode
+    // Load documents - important for both modes
     const savedChoice = localStorage.getItem('visitorChoice');
-    const delay = savedChoice === 'documents' ? 100 : 500;
+    console.log('Initial load - saved choice:', savedChoice);
+    
+    // Always load documents, but with different timing
+    setTimeout(() => {
+        if (document.getElementById('documentation-list')) {
+            console.log('Initial document load attempt');
+            loadClientDocuments();
+        }
+    }, 100);
+    
+    // Additional load attempts to ensure documents appear
+    setTimeout(() => {
+        if (document.getElementById('documentation-list')) {
+            console.log('Secondary document load attempt');
+            loadClientDocuments();
+        }
+    }, 500);
     
     setTimeout(() => {
         if (document.getElementById('documentation-list')) {
-            console.log('Loading documents with delay:', delay);
+            console.log('Tertiary document load attempt');
             loadClientDocuments();
         }
-    }, delay);
+    }, 1000);
     
     // Initialize interactive elements
     initAiHelpPanel();

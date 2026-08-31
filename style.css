@@ -411,6 +411,8 @@ body.documents-only-mode #documentation {
     padding-top: 2rem;
     min-height: 100vh;
     margin-top: 0;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 body.documents-only-mode .visitor-choice {
@@ -419,14 +421,38 @@ body.documents-only-mode .visitor-choice {
 
 body.documents-only-mode .documentation-status {
     display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 body.documents-only-mode .documentation-root {
     display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 body.documents-only-mode .documentation-fallback {
     display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.documents-only-mode .documentation-list {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.documents-only-mode .documentation-card {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.documents-only-mode .container {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 /* Add a "Back to full website" button for documents-only mode */
