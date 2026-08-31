@@ -27,3 +27,6 @@ npm-debug.log*
 
 # Netlify
 .netlify/
+
+# Uncompressed originals (kept locally after image optimization)
+Assets/_originals-backup/
