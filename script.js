@@ -22,6 +22,7 @@ const visitorChoice = document.getElementById('visitor-choice');
 const choiceWebsite = document.getElementById('choice-website');
 const choiceDocuments = document.getElementById('choice-documents');
 const choiceClose = document.getElementById('choice-close');
+const choiceReset = document.getElementById('choice-reset');
 
 // Typed Animation
 const typedTexts = [
@@ -892,8 +893,14 @@ function initVisitorChoice() {
     const savedChoice = localStorage.getItem('visitorChoice');
     const backToWebsiteBtn = document.getElementById('back-to-website');
     
+    console.log('Visitor choice saved value:', savedChoice);
+    
+    // Uncomment this line to always show choice overlay (for testing)
+    // localStorage.removeItem('visitorChoice');
+    
     if (savedChoice === 'documents') {
         // Enable documents-only mode
+        console.log('Auto-loading documents-only mode');
         document.body.classList.add('documents-only-mode');
         visitorChoice.classList.add('hidden');
         document.body.style.overflow = '';
@@ -919,17 +926,20 @@ function initVisitorChoice() {
         return;
     } else if (savedChoice === 'website') {
         // Show full website
+        console.log('Auto-loading full website');
         visitorChoice.classList.add('hidden');
         document.body.style.overflow = '';
         return;
     }
 
     // Show choice overlay for first-time visitors
+    console.log('Showing choice overlay');
     visitorChoice.classList.remove('hidden');
 
     // Handle choice buttons
     if (choiceWebsite) {
         choiceWebsite.addEventListener('click', () => {
+            console.log('User chose full website');
             localStorage.setItem('visitorChoice', 'website');
             visitorChoice.classList.add('hidden');
             // Enable scroll
@@ -939,6 +949,7 @@ function initVisitorChoice() {
 
     if (choiceDocuments) {
         choiceDocuments.addEventListener('click', () => {
+            console.log('User chose documents only');
             localStorage.setItem('visitorChoice', 'documents');
             visitorChoice.classList.add('hidden');
             // Enable documents-only mode
@@ -968,9 +979,18 @@ function initVisitorChoice() {
 
     if (choiceClose) {
         choiceClose.addEventListener('click', () => {
+            console.log('User closed choice overlay - defaulting to website');
             localStorage.setItem('visitorChoice', 'website');
             visitorChoice.classList.add('hidden');
             document.body.style.overflow = '';
+        });
+    }
+
+    if (choiceReset) {
+        choiceReset.addEventListener('click', () => {
+            console.log('User reset choice preference');
+            localStorage.removeItem('visitorChoice');
+            location.reload();
         });
     }
 

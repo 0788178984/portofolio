@@ -344,6 +344,27 @@ input:focus, textarea:focus, select:focus {
     transform: rotate(90deg);
 }
 
+.choice-reset {
+    margin-top: 1.5rem;
+    background: transparent;
+    border: 1px solid var(--glass-border);
+    color: var(--text-muted);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.choice-reset:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    background: rgba(255, 215, 0, 0.1);
+}
+
 /* Mobile responsive for choice overlay */
 @media (max-width: 768px) {
     .visitor-choice-header h2 {
