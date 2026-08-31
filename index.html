@@ -132,6 +132,45 @@
     </script>
 </head>
 <body>
+    <!-- Visitor Choice Overlay -->
+    <div id="visitor-choice" class="visitor-choice" role="dialog" aria-modal="true" aria-labelledby="choice-title">
+        <div class="visitor-choice-content">
+            <div class="visitor-choice-header">
+                <h2 id="choice-title">Welcome to Asmart Tech Platform</h2>
+                <p class="visitor-choice-subtitle">Choose your experience</p>
+            </div>
+            <div class="visitor-choice-options">
+                <button id="choice-website" class="choice-btn choice-btn-primary">
+                    <div class="choice-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="choice-text">
+                        <h3>Visit Full Website</h3>
+                        <p>Explore all services, portfolio, and features</p>
+                    </div>
+                </button>
+                <button id="choice-documents" class="choice-btn choice-btn-secondary">
+                    <div class="choice-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="choice-text">
+                        <h3>Documents Only</h3>
+                        <p>Go directly to client documentation</p>
+                    </div>
+                </button>
+            </div>
+            <button id="choice-close" class="choice-close" aria-label="Close and show full website">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Back to Full Website Button (for documents-only mode) -->
+    <a href="#" id="back-to-website" class="documents-only-nav">
+        <i class="fas fa-globe"></i>
+        <span>Back to Full Website</span>
+    </a>
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress" class="scroll-progress"></div>
 

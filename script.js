@@ -18,6 +18,10 @@ const portfolioItems = document.querySelectorAll('.portfolio-item');
 const testimonialCards = document.querySelectorAll('.testimonial-card');
 const prevBtn = document.querySelector('.prev-btn');
 const nextBtn = document.querySelector('.next-btn');
+const visitorChoice = document.getElementById('visitor-choice');
+const choiceWebsite = document.getElementById('choice-website');
+const choiceDocuments = document.getElementById('choice-documents');
+const choiceClose = document.getElementById('choice-close');
 
 // Typed Animation
 const typedTexts = [
@@ -816,8 +820,89 @@ function initPortfolioPlaceholders() {
     });
 }
 
+// Visitor Choice Overlay Functions
+function initVisitorChoice() {
+    if (!visitorChoice) return;
+
+    // Check if user already made a choice
+    const savedChoice = localStorage.getItem('visitorChoice');
+    const backToWebsiteBtn = document.getElementById('back-to-website');
+    
+    if (savedChoice === 'documents') {
+        // Enable documents-only mode
+        document.body.classList.add('documents-only-mode');
+        visitorChoice.classList.add('hidden');
+        document.body.style.overflow = '';
+        
+        // Handle back to website button
+        if (backToWebsiteBtn) {
+            backToWebsiteBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.setItem('visitorChoice', 'website');
+                document.body.classList.remove('documents-only-mode');
+                window.location.hash = '';
+                window.location.reload();
+            });
+        }
+        return;
+    } else if (savedChoice === 'website') {
+        // Show full website
+        visitorChoice.classList.add('hidden');
+        document.body.style.overflow = '';
+        return;
+    }
+
+    // Show choice overlay for first-time visitors
+    visitorChoice.classList.remove('hidden');
+
+    // Handle choice buttons
+    if (choiceWebsite) {
+        choiceWebsite.addEventListener('click', () => {
+            localStorage.setItem('visitorChoice', 'website');
+            visitorChoice.classList.add('hidden');
+            // Enable scroll
+            document.body.style.overflow = '';
+        });
+    }
+
+    if (choiceDocuments) {
+        choiceDocuments.addEventListener('click', () => {
+            localStorage.setItem('visitorChoice', 'documents');
+            visitorChoice.classList.add('hidden');
+            // Enable documents-only mode
+            document.body.classList.add('documents-only-mode');
+            document.body.style.overflow = '';
+            
+            // Handle back to website button
+            if (backToWebsiteBtn) {
+                backToWebsiteBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    localStorage.setItem('visitorChoice', 'website');
+                    document.body.classList.remove('documents-only-mode');
+                    window.location.hash = '';
+                    window.location.reload();
+                });
+            }
+        });
+    }
+
+    if (choiceClose) {
+        choiceClose.addEventListener('click', () => {
+            localStorage.setItem('visitorChoice', 'website');
+            visitorChoice.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+    }
+
+    // Prevent scrolling while choice is shown
+    document.body.style.overflow = 'hidden';
+}
+
 // Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize visitor choice first
+    initVisitorChoice();
+    
     // Critical path items first
     hidePreloader();
     if (themeToggle) loadSavedTheme();
