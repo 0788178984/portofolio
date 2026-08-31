@@ -445,16 +445,32 @@ function friendlyFileType(mime, filename) {
 }
 
 function normalizeDriveFile(f) {
-    if (!f || typeof f !== 'object') return null;
+    console.log('normalizeDriveFile called with:', f);
+    
+    if (!f || typeof f !== 'object') {
+        console.log('Invalid file object, returning null');
+        return null;
+    }
+    
     const name =
         (f.name != null && String(f.name).trim()) ||
         (f.title != null && String(f.title).trim()) ||
         '';
-    if (!name) return null;
+    
+    console.log('File name:', name);
+    
+    if (!name) {
+        console.log('No file name, returning null');
+        return null;
+    }
+    
     let downloadUrl = f.url != null ? String(f.url).trim() : '';
     if (!downloadUrl && f.id != null) {
         downloadUrl = 'https://drive.google.com/uc?export=download&id=' + String(f.id).trim();
     }
+    
+    console.log('Download URL:', downloadUrl);
+    
     const type = f.type != null ? String(f.type).trim() : '';
     const sizeStr = formatFileSize(f.size);
     let dateStr = '';
@@ -470,7 +486,8 @@ function normalizeDriveFile(f) {
         }
     }
     const ft = friendlyFileType(type, name);
-    return {
+    
+    const result = {
         title: name,
         description: '',
         fileKindLabel: ft.label,
@@ -480,6 +497,9 @@ function normalizeDriveFile(f) {
         url: downloadUrl,
         viewUrl: f.viewUrl != null ? String(f.viewUrl).trim() : ''
     };
+    
+    console.log('Normalized file result:', result);
+    return result;
 }
 
 /**
@@ -490,27 +510,39 @@ function normalizeDriveFile(f) {
  * - { documents: [...] } — manual / legacy flat list
  */
 function feedDataToGroups(data) {
-    if (!data || typeof data !== 'object') return [];
+    console.log('feedDataToGroups called with data:', data);
+    
+    if (!data || typeof data !== 'object') {
+        console.log('Invalid data, returning empty array');
+        return [];
+    }
 
     if (Array.isArray(data.folders) && data.folders.length > 0) {
+        console.log('Processing folders structure:', data.folders.length, 'folders');
         const out = [];
         data.folders.forEach((fol) => {
             const sectionName = String(fol.name != null ? fol.name : fol.title != null ? fol.title : '').trim();
             const rawFiles = Array.isArray(fol.files) ? fol.files : [];
+            console.log('Processing folder:', sectionName, 'with', rawFiles.length, 'files');
             const items = rawFiles.map(normalizeDriveFile).filter(Boolean);
+            console.log('Normalized items:', items.length);
             if (items.length > 0) {
                 out.push({ title: sectionName || 'Documents', items });
             }
         });
+        console.log('Returning groups from folders:', out);
         return out;
     }
 
     if (Array.isArray(data.files) && data.files.length > 0) {
+        console.log('Processing files structure:', data.files.length, 'files');
         const hasFolderField = data.files.some((raw) => {
             const k = raw.folder != null ? String(raw.folder).trim() : raw.category != null ? String(raw.category).trim() : '';
             return Boolean(k);
         });
+        
         if (hasFolderField) {
+            console.log('Files have folder/category field, grouping');
             const order = [];
             const map = new Map();
             data.files.forEach((raw) => {
@@ -525,44 +557,74 @@ function feedDataToGroups(data) {
             });
             if (order.length === 1 && order[0] === '__flat') {
                 const g = map.get('__flat');
+                console.log('Single flat group with', g.items.length, 'items');
                 return g.items.length ? [{ title: null, items: g.items }] : [];
             }
-            return order
+            const result = order
                 .map((k) => map.get(k))
                 .filter((g) => g.items.length > 0)
                 .map((g) => ({
                     title: g.title,
                     items: g.items
                 }));
+            console.log('Returning grouped files:', result);
+            return result;
         }
+        
+        console.log('Files have no folder field, creating single group');
         const items = data.files.map(normalizeDriveFile).filter(Boolean);
-        return items.length ? [{ title: null, items }] : [];
+        console.log('Normalized', items.length, 'items from files');
+        const result = items.length ? [{ title: null, items }] : [];
+        console.log('Returning single group:', result);
+        return result;
     }
 
     if (Array.isArray(data.documents) && data.documents.length > 0) {
+        console.log('Processing documents structure:', data.documents.length, 'documents');
         return [{ title: null, items: data.documents }];
     }
 
+    console.log('No recognized data structure, returning empty array');
     return [];
 }
 
 function appendDocumentationCards(container, docs, emptyMessage) {
+    console.log('appendDocumentationCards called with', docs.length, 'documents');
+    console.log('Container:', container);
+    
     let rendered = 0;
-    docs.forEach((doc) => {
-        if (!doc) return;
+    docs.forEach((doc, index) => {
+        console.log('Processing doc', index, ':', doc);
+        
+        if (!doc) {
+            console.log('Skipping null doc at index', index);
+            return;
+        }
+        
         const title =
             (doc.title != null && String(doc.title).trim()) ||
             (doc.name != null && String(doc.name).trim()) ||
             '';
-        if (!title) return;
+        
+        console.log('Doc title:', title);
+        
+        if (!title) {
+            console.log('Skipping doc with no title at index', index);
+            return;
+        }
+        
         rendered += 1;
+        console.log('Rendering doc', rendered, ':', title);
+        
         const rawUrl = doc.url != null ? String(doc.url).trim() : '';
         const hasUrl = isSafeHttpUrl(rawUrl);
         const viewRaw = doc.viewUrl != null ? String(doc.viewUrl).trim() : '';
         const hasView = isSafeHttpUrl(viewRaw) && viewRaw !== rawUrl;
+        
         const card = document.createElement('article');
         card.className = 'documentation-card';
         card.setAttribute('role', 'listitem');
+        card.style.display = 'block';
 
         const icon =
             doc.fileIconClass && /^fa-[a-z0-9-]+$/.test(doc.fileIconClass)
@@ -618,8 +680,13 @@ function appendDocumentationCards(container, docs, emptyMessage) {
             '<div class="documentation-card-actions">' +
             actionsInner +
             '</div></div></div>';
+        
         container.appendChild(card);
+        console.log('Appended card for', title, 'to container');
     });
+    
+    console.log('appendDocumentationCards returning rendered:', rendered);
+    console.log('Container children count:', container.children.length);
     return rendered;
 }
 
@@ -629,26 +696,50 @@ function renderDocumentationCards(container, docs, emptyMessage) {
 }
 
 function renderDocumentationGrouped(rootEl, groups, emptyMessage) {
+    console.log('renderDocumentationGrouped called with', groups.length, 'groups');
+    console.log('Root element:', rootEl);
+    
     rootEl.innerHTML = '';
     rootEl.className = 'documentation-root';
+    rootEl.style.display = 'block';
+    
     let total = 0;
-    groups.forEach((group) => {
-        if (!group.items || group.items.length === 0) return;
+    groups.forEach((group, index) => {
+        console.log('Processing group', index, ':', group.title, 'with', group.items ? group.items.length : 0, 'items');
+        
+        if (!group.items || group.items.length === 0) {
+            console.log('Skipping empty group');
+            return;
+        }
+        
         const folderSection = document.createElement('section');
         folderSection.className = 'documentation-folder';
         folderSection.setAttribute('aria-label', group.title || 'Downloads');
+        folderSection.style.display = 'block';
+        
         if (group.title) {
             const heading = document.createElement('h3');
             heading.className = 'documentation-folder-title';
             heading.textContent = group.title;
+            heading.style.display = 'block';
             folderSection.appendChild(heading);
         }
+        
         const grid = document.createElement('div');
         grid.className = 'documentation-grid';
+        grid.style.display = 'grid';
         folderSection.appendChild(grid);
-        total += appendDocumentationCards(grid, group.items, emptyMessage);
+        
+        const rendered = appendDocumentationCards(grid, group.items, emptyMessage);
+        console.log('Rendered', rendered, 'cards for group', index);
+        total += rendered;
+        
         rootEl.appendChild(folderSection);
+        console.log('Added folder section to root, total so far:', total);
     });
+    
+    console.log('renderDocumentationGrouped returning total:', total);
+    console.log('Root element HTML length:', rootEl.innerHTML.length);
     return total;
 }
 
@@ -760,16 +851,29 @@ function loadClientDocuments() {
             fetchDriveFeed(feedUrl)
                 .then((data) => {
                     console.log('Drive data received:', data);
+                    console.log('Data structure:', JSON.stringify(data, null, 2));
+                    
                     const groups = feedDataToGroups(data);
                     console.log('Groups created:', groups);
+                    console.log('Groups structure:', JSON.stringify(groups, null, 2));
+                    
                     const itemCount = groups.reduce((sum, g) => sum + (g.items ? g.items.length : 0), 0);
-                    console.log('Total items:', itemCount);
+                    console.log('Total items in groups:', itemCount);
+                    
                     if (itemCount > 0) {
+                        console.log('Attempting to render', itemCount, 'documents');
+                        list.innerHTML = ''; // Clear list before rendering
+                        list.style.display = 'block';
+                        
                         const rendered = renderDocumentationGrouped(list, groups, driveHint);
-                        console.log('Rendered from Drive:', rendered);
+                        console.log('Rendered from Drive:', rendered, 'documents');
+                        console.log('List HTML after render:', list.innerHTML.substring(0, 200));
+                        
                         if (rendered === 0) {
+                            console.error('Rendering returned 0, applying static');
                             applyStatic();
                         } else {
+                            console.log('Successfully rendered', rendered, 'documents');
                             fallback.hidden = true;
                             fallback.style.display = 'none';
                             if (toolbar) toolbar.hidden = false;
@@ -785,7 +889,7 @@ function loadClientDocuments() {
                             }, 3000);
                         }
                     } else {
-                        console.log('No items in Drive, using static');
+                        console.log('No items in groups, using static documents');
                         applyStatic();
                     }
                 })
