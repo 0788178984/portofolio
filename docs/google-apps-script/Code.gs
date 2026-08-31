@@ -13,7 +13,7 @@
  * Share the root folder as "Anyone with the link" = Viewer.
  */
 
-var FOLDER_ID = 'PASTE_YOUR_FOLDER_ID_HERE'; // Replace with your Google Drive folder ID
+var FOLDER_ID = 'PASTE_YOUR_FOLDER_ID_HERE';
 
 function fileToJson_(f) {
   var id = f.getId();
