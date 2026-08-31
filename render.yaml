@@ -1,0 +1,14 @@
+# Render Blueprint — deploy from repo root (Dashboard: New → Blueprint)
+services:
+  - type: web
+    name: asmart-platform-api
+    runtime: node
+    plan: free
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: ALLOWED_ORIGINS
+        value: https://asmartdev.netlify.app,https://asmartcom.netlify.app

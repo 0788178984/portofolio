@@ -1,0 +1,145 @@
+# Static frontend (Netlify) + API backend (Render.com)
+[build]
+  publish = "."
+
+# Same-origin proxy so the browser can load Drive files without CORS errors
+[[redirects]]
+  from = "/api/drive-docs"
+  to = "https://script.google.com/macros/s/AKfycbxX0pzLj-_rvfvj1oZ2V0Q5WTPFriw6oCJk4heXLm2ZQUMbSnJT7_lHJ3qR7A9u6Hgn/exec"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/services"
+  to = "/services.html"
+  status = 200
+
+[[redirects]]
+  from = "/guides"
+  to = "/guides.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/contact.html"
+  status = 200
+
+[[redirects]]
+  from = "/request"
+  to = "/request.html"
+  status = 200
+
+[[redirects]]
+  from = "/web-designer-uganda"
+  to = "/web-designer-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/app-developer-uganda"
+  to = "/app-developer-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/tech-consulting-uganda"
+  to = "/tech-consulting-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/computer-repair-kagadi"
+  to = "/computer-repair-kagadi.html"
+  status = 200
+
+[[redirects]]
+  from = "/cctv-installation-uganda"
+  to = "/cctv-installation-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/wifi-setup-uganda"
+  to = "/wifi-setup-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/cv-typing-services-uganda"
+  to = "/cv-typing-services-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/graphic-design-uganda"
+  to = "/graphic-design-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/social-media-management-uganda"
+  to = "/social-media-management-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/seo-small-business-uganda"
+  to = "/seo-small-business-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/software-installation-uganda"
+  to = "/software-installation-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/data-recovery-uganda"
+  to = "/data-recovery-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/website-cost-uganda"
+  to = "/website-cost-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/computer-phone-repair-uganda"
+  to = "/computer-phone-repair-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/computer-repair-kagadi"
+  to = "/computer-phone-repair-uganda.html"
+  status = 301
+
+[[redirects]]
+  from = "/printing-services-uganda"
+  to = "/printing-services-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/supermarket-software-uganda"
+  to = "/supermarket-software-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/school-website-uganda"
+  to = "/school-website-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/clinic-website-uganda"
+  to = "/clinic-website-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/sacco-digital-services-uganda"
+  to = "/sacco-digital-services-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog"
+  to = "/blog.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/google-ads-youtube-ads-uganda"
+  to = "/blog/google-ads-youtube-ads-uganda.html"
+  status = 200
+
+[[redirects]]
+  from = "/blog/school-website-marketing-uganda"
+  to = "/blog/school-website-marketing-uganda.html"
+  status = 200

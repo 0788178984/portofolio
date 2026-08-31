@@ -1,0 +1,46 @@
+{
+  "name": "Asmart Tech Platform",
+  "short_name": "Asmart.tech",
+  "description": "Self-running tech business platform in Kagadi, Uganda — websites, apps, CCTV, repairs, typing, social media, and 20+ tech services.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0E27",
+  "theme_color": "#FFD700",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    {
+      "src": "Assets/favicon.ico.png",
+      "sizes": "16x16 32x32",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "Assets/Apple Touch Icon.jpg",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "All Services",
+      "short_name": "Services",
+      "url": "/services",
+      "icons": [{ "src": "Assets/favicon.ico.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Request Service",
+      "short_name": "Request",
+      "url": "/request",
+      "icons": [{ "src": "Assets/favicon.ico.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Contact",
+      "short_name": "Contact",
+      "url": "/contact",
+      "icons": [{ "src": "Assets/favicon.ico.png", "sizes": "192x192" }]
+    }
+  ]
+}

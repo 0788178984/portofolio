@@ -1,0 +1,43 @@
+{
+  "driveFeedUrl": "",
+  "driveProxyUrl": "/api/drive-docs",
+  "documents": [
+    {
+      "title": "Asmart Platform Brochure",
+      "description": "Complete overview of Asmart tech services and offerings",
+      "url": "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID",
+      "viewUrl": "https://drive.google.com/file/d/YOUR_FILE_ID/view",
+      "type": "application/pdf",
+      "fileKindLabel": "PDF",
+      "fileIconClass": "fa-file-pdf"
+    },
+    {
+      "title": "Web Design Portfolio",
+      "description": "Samples of recent web design projects",
+      "url": "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID",
+      "viewUrl": "https://drive.google.com/file/d/YOUR_FILE_ID/view",
+      "type": "application/pdf",
+      "fileKindLabel": "PDF",
+      "fileIconClass": "fa-file-pdf"
+    },
+    {
+      "title": "Mobile App Development Guide",
+      "description": "Process and approach for mobile app development",
+      "url": "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID",
+      "viewUrl": "https://drive.google.com/file/d/YOUR_FILE_ID/view",
+      "type": "application/pdf",
+      "fileKindLabel": "PDF",
+      "fileIconClass": "fa-file-pdf"
+    },
+    {
+      "title": "Service Pricing Guide",
+      "description": "Detailed pricing information for all services",
+      "url": "https://drive.google.com/uc?export=download&id=YOUR_FILE_ID",
+      "viewUrl": "https://drive.google.com/file/d/YOUR_FILE_ID/view",
+      "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "fileKindLabel": "Spreadsheet",
+      "fileIconClass": "fa-file-excel"
+    }
+  ],
+  "driveFolderHint": "For Google Drive: share the file as Anyone with the link can view, then use https://drive.google.com/uc?export=download&id=YOUR_FILE_ID. Replace YOUR_FILE_ID with actual file IDs from your Google Drive."
+}
