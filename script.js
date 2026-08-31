@@ -22,7 +22,6 @@ const visitorChoice = document.getElementById('visitor-choice');
 const choiceWebsite = document.getElementById('choice-website');
 const choiceDocuments = document.getElementById('choice-documents');
 const choiceClose = document.getElementById('choice-close');
-const choiceReset = document.getElementById('choice-reset');
 
 // Typed Animation
 const typedTexts = [
@@ -895,46 +894,18 @@ function initVisitorChoice() {
     
     console.log('Visitor choice saved value:', savedChoice);
     
-    // Uncomment this line to always show choice overlay (for testing)
-    // localStorage.removeItem('visitorChoice');
-    
-    if (savedChoice === 'documents') {
-        // Enable documents-only mode
-        console.log('Auto-loading documents-only mode');
-        document.body.classList.add('documents-only-mode');
-        visitorChoice.classList.add('hidden');
-        document.body.style.overflow = '';
-        
-        // Force load documents immediately in documents-only mode
-        setTimeout(() => {
-            if (document.getElementById('documentation-list')) {
-                console.log('Loading documents in documents-only mode');
-                loadClientDocuments();
-            }
-        }, 100);
-        
-        // Handle back to website button
-        if (backToWebsiteBtn) {
-            backToWebsiteBtn.addEventListener('click', (e) => {
-                e.preventDefault();
-                localStorage.setItem('visitorChoice', 'website');
-                document.body.classList.remove('documents-only-mode');
-                window.location.hash = '';
-                window.location.reload();
-            });
-        }
-        return;
-    } else if (savedChoice === 'website') {
-        // Show full website
-        console.log('Auto-loading full website');
-        visitorChoice.classList.add('hidden');
-        document.body.style.overflow = '';
-        return;
-    }
-
-    // Show choice overlay for first-time visitors
+    // Always show choice overlay, but highlight previous choice
     console.log('Showing choice overlay');
     visitorChoice.classList.remove('hidden');
+    
+    // Highlight previous choice if exists
+    if (savedChoice === 'documents' && choiceDocuments) {
+        choiceDocuments.classList.add('choice-btn-selected');
+        choiceDocuments.querySelector('.choice-text h3').textContent = 'Documents Only (Previous Choice)';
+    } else if (savedChoice === 'website' && choiceWebsite) {
+        choiceWebsite.classList.add('choice-btn-selected');
+        choiceWebsite.querySelector('.choice-text h3').textContent = 'Visit Full Website (Previous Choice)';
+    }
 
     // Handle choice buttons
     if (choiceWebsite) {
@@ -942,7 +913,6 @@ function initVisitorChoice() {
             console.log('User chose full website');
             localStorage.setItem('visitorChoice', 'website');
             visitorChoice.classList.add('hidden');
-            // Enable scroll
             document.body.style.overflow = '';
         });
     }
@@ -979,18 +949,22 @@ function initVisitorChoice() {
 
     if (choiceClose) {
         choiceClose.addEventListener('click', () => {
-            console.log('User closed choice overlay - defaulting to website');
-            localStorage.setItem('visitorChoice', 'website');
+            console.log('User closed choice overlay - using previous choice');
+            // Use saved choice or default to website
+            const finalChoice = savedChoice || 'website';
+            localStorage.setItem('visitorChoice', finalChoice);
+            
+            if (finalChoice === 'documents') {
+                document.body.classList.add('documents-only-mode');
+                setTimeout(() => {
+                    if (document.getElementById('documentation-list')) {
+                        loadClientDocuments();
+                    }
+                }, 100);
+            }
+            
             visitorChoice.classList.add('hidden');
             document.body.style.overflow = '';
-        });
-    }
-
-    if (choiceReset) {
-        choiceReset.addEventListener('click', () => {
-            console.log('User reset choice preference');
-            localStorage.removeItem('visitorChoice');
-            location.reload();
         });
     }
 
